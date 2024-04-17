@@ -22,14 +22,25 @@
                         <li class="col nav-item">
                         <a class="nav-link" href="http://localhost/inventario_tec/modules/compañia">Compañia <i class="fa-solid fa-industry fa-sm"></i></a>
                         </li>
+                        <li class="col nav-item">
+                        <a class="nav-link" href="http://localhost/inventario_tec/modules/entradas">Entradas/Salidas <i class="fa-solid fa-truck-ramp-box fa-sm"></i></a>
+                    </li>
 
                     </ul>
                     </div>
                     <div class="card-body">
                         <h3 class="fw-bolder">Registro de Antena</h3>
-                        <a href="registrar_antena.php" class="btn btn-primary">
-                            Agregar nuevo registro <i class="fa-solid fa-circle-plus"></i>
-                        </a>
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <a href="registrar_antena.php" class="btn btn-primary"> Agregar nuevo registro <i class="fa-solid fa-circle-plus"></i> </a>          
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-box-open fa-xs"></i> Registro de Kit</button>
+                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/registrar_kit.php"> <i class="fa-solid fa-box fa-sm"></i> Registrar Nuevo Kit</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost/inventario_tec/index.php"> <i class="fa-solid fa-clipboard fa-sm"></i>  Vista de Kit</a></li>
+                                </ul>
+                                </div>
+                        </div>
+                        
                         <hr>
                         <div class="col table-responsive">
                             <table class="table table-sm table-hover table-bordered">

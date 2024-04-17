@@ -1,39 +1,35 @@
 <?php 
 require('../../config/conexion.php');
-
 $num_kit = $_POST['num_kit'];
 $ip = $_POST['ip'];
 $tw = $_POST['tw'];
-$status = $_POST['status'];
+$status_kit = $_POST['status'];
 
-$num_kit = $_POST['num_kit'];
+$id_kit = $_POST ['id_kit'];
+$num_kit_antena = $_POST['num_kit']; 
 $num_plato = $_POST['num_plato'];
 $ns_modem = $_POST['ns_modem'];
-$status = $_POST['status'];
-
+$status_antena = $_POST['status'];
 
 $conexion->begin_transaction();
 
 $sql_kit = $conexion->prepare("INSERT INTO `kit`(`num_kit`, `ip`, `tw`, `status`) VALUES (?, ?, ?, ?)");
-$sql_kit->bind_param("issssss", $num_kit, $ip, $tw, $status_kit);
-$sql_kit->execute();
+$sql_kit->bind_param("isss", $num_kit, $ip, $tw, $status_kit);
+$sql_kit_executed = $sql_kit->execute(); // Verifica si la consulta se ejecutó correctamente
 
-$sql_antena = $conexion->prepare("INSERT INTO `antena`(`num_serie`, `num_plato`, `ns_modem` `status`) VALUES (?, ?, ?, ?)");
-$sql_antena->bind_param("issssss", $num_skit_antena, $num_plato, $ns_modem, $status_antena);
-$sql_antena->execute();
+$sql_antena = $conexion->prepare("INSERT INTO `antena`(`num_kit`, `num_plato`, `ns_modem`, `status`) VALUES (?, ?, ?, ?)");
+$sql_antena->bind_param("isss", $num_kit_antena, $num_plato, $ns_modem, $status_antena);
+$sql_antena_executed = $sql_antena->execute(); // Verifica si la consulta se ejecutó correctamente
 
-if($sql_kit && $sql_antena){
+if($sql_kit_executed && $sql_antena_executed){
     $conexion->commit();
-    //echo "Datos se Insertaron Correctamente.";
     header('Location: index.php');
 }else{
     $conexion->rollback();
     echo "Error: " . $conexion->error;
 }
-
-/*
 //consultas para verificar si los datos exitan
-$sql_num_kit ="SELECT * FROM `antena` WHERE `num_kit` = '$num_kit'";
+$sql_num_kit ="SELECT * FROM `kit` WHERE `num_kit` = '$num_kit'";
 $result_num_kit = $conexion->query($sql_num_kit);
 
 $sql_ns_modem ="SELECT * FROM `antena` WHERE `ns_modem` = '$ns_modem'";

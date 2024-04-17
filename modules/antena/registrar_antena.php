@@ -27,7 +27,7 @@ $resultado_select2 = $conexion->query($sql_select2);
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Registro de Antena
+                                        Registro de Kit
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionSensor">
@@ -36,6 +36,7 @@ $resultado_select2 = $conexion->query($sql_select2);
                                         <div class="col-4 mt-2">
                                                 <label for="num_kit" class="form-label">Numero de kit:</label>
                                                 <input type="text" class="form-control" name="num_kit" id="num_kit" required>
+                                                
                                             </div>
                                             <div class="col-4 mt-2">
                                                 <label for="ip" class="form-label">IP:</label>
@@ -46,17 +47,6 @@ $resultado_select2 = $conexion->query($sql_select2);
                                                 <input type="text" class="form-control" name="tw" id="tw" required>                                             
                                             </div>
                                         </div>
-                                        <div class="row">
-                                        <div class="col-4 mt-2">
-                                            <label for="descripcion" class="form-label">Descripcion:</label>
-                                            <input type="text" class="form-control" name="descripcion" id="descripcion" required>
-                                        </div>
-                                        <div class="col-4 mt-2">
-                                            <label for="nombre" class="form-label">Nombre:</label>
-                                            <input type="text" class="form-control" name="nombre" id="nombre" required>
-                                        </div>
-                                        </div>
-                                        <div class="row">
                                         <div class="col-4 mt-2">
                                                 <label for="status" class="form-label">Status</label>
                                             <select class="form-select" name="status" id="status" required>
@@ -81,17 +71,17 @@ $resultado_select2 = $conexion->query($sql_select2);
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSensor">
                                     <div class="accordion-body">
                                         <div class="row">
-                                        <div class="col-4 mt-2">
+                                        <!--div class="col-4 mt-2">
                                                 <label for="num_kit" class="form-label">Numero kit:</label>
-                                                <input type="text" class="form-control" name="num_kit" id="num_kit">
-                                            </div>
+                                                <input type="text" class="form-control" name="num_kit" id="num_kit" required>
+                                            </div-->
                                             <div class="col-4 mt-2">
                                                 <label for="num_plato" class="form-label">Numero plato:</label>
-                                                <input type="text" class="form-control" name="num_plato" id="num_plato">
+                                                <input type="text" class="form-control" name="num_plato" id="num_plato" required>
                                             </div>
                                             <div class="col-4 mt-2">
                                                 <label for="ns_modem" class="form-label">Numero serie del Modem:</label>
-                                                <input type="text" class="form-control" name="ns_modem" id="ns_modem">  
+                                                <input type="text" class="form-control" name="ns_modem" id="ns_modem" required>  
                                             </div>
                                         </divs>
                                         <div class="row">
@@ -113,16 +103,16 @@ $resultado_select2 = $conexion->query($sql_select2);
                             </div>
                         </div>
                     </div>
+
                 </div>
-                        <div class="d-flex justify-content-center">
-                            <div class="col-2 text-center form-group mt-5">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="col text-center form-group mt-7">
                             <a href="index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
-                        <button  type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button> 
-                            </div>
+                            <button  type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button> 
                         </div>
                     </div>
                 </form>
-
             </div>
 
             </div>
