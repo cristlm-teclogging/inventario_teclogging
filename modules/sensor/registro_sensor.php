@@ -103,10 +103,10 @@ $resultado_select1 = $conexion->query($sql_select1);
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSensor">
                                     <div class="accordion-body">
                                         <div class="row">
-                                            <div class="col-4 mt-2">
-                                                <label for="num_serie" class="form-label">Num de serie:</label>
-                                                <input type="text" class="form-control" name="num_serie" id="num_serie" required>
-                                            </div>
+                                            <!--div class="col-4 mt-2">
+                                                <label for="num_serie_sensor" class="form-label">Num de serie:</label>
+                                                <input type="text" class="form-control" name="num_serie_sensor" id="num_serie_sensor" required>
+                                            </div-->
                                             <div class="col-4 mt-2">
                                                 <label for="rango" class="form-label">Rango:</label>
                                                 <input type="text" class="form-control" name="rango" id="rango" required>                                            
@@ -150,50 +150,8 @@ $resultado_select1 = $conexion->query($sql_select1);
                         </div>
                     </div>
                 </div>
-                <!--div class="row">
-                        <div class="col-4 mt-3">
-                        <label for="num_serie" class="form-label">Num de serie:</label>
-                        <input type="text" class="form-control" name="num_serie" id="num_serie">
-                        </div>
-
-                    <div class="col-4 mt-3">
-                        <label for="rango" class="form-label">Rango:</label>
-                        <input type="text" class="form-control" name="rango" id="rango">
-                    </div>
-                    <div class="col-4 mt-3">
-                        <label for="output" class="form-label">Output:</label>
-                        <input type="text" class="form-control" name="output" id="output">
-                    </div>
-                    </div-->
-                    <!--div class="row">
-                        <div class="col-4 mt-3">
-                        <label for="cert_enyca" class="form-label">Certificado de enyca:</label>
-                        <input type="text" class="form-control" name="cert_enyca" id="cert_enyca">
-                        </div>
-
-                    <div class="col-4 mt-3">
-                        <label for="fecha_calibracion" class="form-label">Fecha Calibracion:</label>
-                        <input type="date" class="form-control" name="fecha_calibracion" id="fecha_calibracion">
-                    </div>
-                    <div class="col-4 mt-3">
-                        <label for="url_enyca" class="form-label">url enyca:</label>
-                        <input type="url" class="form-control" name="url_enyca" id="url_enyca">
-                    </div>
-                    </div>
-                    <div class="row"-->
-                        <!--div class="col-4 mt-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select" name="status" id="status">
-                                <option value="0" selected>Selecciona tu opción</option>
-                                <!-?php 
-                            while($row = $resultado_select1->fetch_assoc()){
-                                 ?>
-                                <option value="<!-?php echo $row['id_status']; ?>"><?//php echo $row['status']; ?></option>
-                                 <!-?php } ?>
-                            </select>
-                        </div-->
                         <div class="d-flex justify-content-center">
-                            <div class="col-2 text-center form-group mt-5">
+                            <div class="col-3 text-center form-group mt-3">
                             <a href="index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                         <button  type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button> 
                             </div>
