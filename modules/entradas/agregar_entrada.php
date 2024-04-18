@@ -9,7 +9,6 @@ $documentos_firmados = addslashes(file_get_contents($_FILES['documentos_firmados
 $sql = "INSERT INTO `entrada`(`id_entrada`, `fecha_entrada`, `dias_trabajados`, `documentos_firmados`)VALUES('$id_entrada', '$fecha_entrada', '$dias_trabajados', '$documentos_firmados')";
 
 $resultado = $conexion -> query($sql);
-
 if($resultado){
     header('Location: index.php');
 }else{
