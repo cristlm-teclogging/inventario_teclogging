@@ -69,7 +69,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                                         <div class="row">
                                             <div class="col-4 mt-2">
                                             <label for="estado_item" class="form-label">Estado del item</label>
-                                            <select class="form-select" name="estado_item" id="estado_item">
+                                            <select class="form-select" name="estado_item" id="estado_item" required>
                                             <option value="0" selected>Selecciona tu opción</option>
                                             <?php
                                              while($row = $resultado_item2->fetch_assoc()){
@@ -81,7 +81,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                                             <div class="col-4 mt-2">
                                                 <label for="status" class="form-label">Status</label>
                                                 <select class="form-select" name="status" id="status" required>
-                                                <option value="0" selected>Selecciona tu opción</option>  
+                                                <option value="" selected disabled>Selecciona tu opción</option>  
                                                 <?php 
                                                 while($row = $resultado_select3->fetch_assoc()){
                                                  ?>
@@ -103,10 +103,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSensor">
                                     <div class="accordion-body">
                                         <div class="row">
-                                            <!--div class="col-4 mt-2">
-                                                <label for="num_serie_sensor" class="form-label">Num de serie:</label>
-                                                <input type="text" class="form-control" name="num_serie_sensor" id="num_serie_sensor" required>
-                                            </div-->
+                                            <!--num_kit se agregar en el primer formulaio para la tabla dos"-->
                                             <div class="col-4 mt-2">
                                                 <label for="rango" class="form-label">Rango:</label>
                                                 <input type="text" class="form-control" name="rango" id="rango" required>                                            
@@ -134,7 +131,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                                             <div class="col-4 mt-2">
                                             <label for="status" class="form-label">Status</label>
                                             <select class="form-select" name="status" id="status"  required>
-                                            <option value="0" selected>Selecciona tu opción</option>
+                                            <option value="" selected disabled>Selecciona tu opción</option>
                                             <?php 
                                                 while($row = $resultado_select1->fetch_assoc()){
                                             ?>
