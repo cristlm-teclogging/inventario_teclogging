@@ -63,7 +63,7 @@ $resultado_select2 = $conexion->query($sql_select2);
                                         <div class="col-4 mt-2">
                                                 <label for="status" class="form-label">Status</label>
                                             <select class="form-select" name="status" id="status" required>
-                                                <option value="0" selected>Selecciona tu opción</option>
+                                                <option value="" selected disabled>Selecciona tu opción</option>
                                                  <?php 
                                                  while($row = $resultado_select1->fetch_assoc()){
                                                  ?>
@@ -101,7 +101,7 @@ $resultado_select2 = $conexion->query($sql_select2);
                                             <div class="col-4 mt-2">
                                             <label for="status" class="form-label">Status</label>
                                             <select class="form-select" name="status" id="status"  required>
-                                            <option value="0" selected>Selecciona tu opción</option>
+                                            <option value="" selected>Selecciona tu opción</option>
                                             <?php 
                                                 while($row = $resultado_select2->fetch_assoc()){
                                             ?>
