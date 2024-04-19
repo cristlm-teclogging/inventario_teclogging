@@ -29,14 +29,13 @@
             </div>
             <div class="card-body"><!--card-body-->
                 <h3 class="fw-bolder">Registro de kit</h3>
-                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a href="./modules/registro_kit.php" class="btn btn-primary"> Agregar nuevo registro <i class="fa-solid fa-circle-plus"></i></a>
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-satellite-dish fa-sm"></i> Registro de Antena</button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/antena/registrar_antena.php"> <i class="fa-solid fa-satellite-dish fa-sm"></i> Registrar Nueva Antena</a></li>
                             <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/antena/index.php"> <i class="fa-solid fa-clipboard fa-sm"></i>  Vista de Antenas</a></li>
-
                         </ul>
                     </div>
                 </div>
@@ -70,11 +69,11 @@
                             <td><?php echo $row['tw'];?></td>
                             <td><?php echo $row['status'];?></td>
                             <td class="text-center">
-                            <a href="./modules/editar_kit.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-warning">Editar <i class="fa-solid fa-user-pen"></i></a>
+                            <a href="./modules/editar_kit.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-warning"> <i class="fa-solid fa-user-pen"></i></a>
 
                             </td>
                             <td class="text-center">
-                            <a href="./modules/eliminar_kit.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-danger">Eliminar <i class="fas fa-trash-can"></i></a>
+                            <a href="./modules/eliminar_kit.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-danger"> <i class="fas fa-trash-can"></i></a>
                             </td>
 
                         </tr>
