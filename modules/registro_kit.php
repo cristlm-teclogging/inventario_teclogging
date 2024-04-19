@@ -34,7 +34,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                     <div class="col-4 mt-3">
                      <label for="status" class="form-label">Status</label>
                         <select class="form-select" name="status" id="status" required>
-                        <option value="0" selected>Selecciona tu opción</option>
+                        <option value="" selected disabled>Selecciona tu opción</option>
                         <?php 
                          while($row = $resultado_select1->fetch_assoc()){
                         ?>
@@ -43,7 +43,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                         </select>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <div class="col-2 text-center fom-group mt-5">
+                        <div class="col text-center fom-group mt-5">
                         <a href="../index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                         <button  type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button>
                            

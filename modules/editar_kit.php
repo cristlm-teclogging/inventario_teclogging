@@ -46,7 +46,7 @@ $row = $resultado->fetch_assoc();
                         </select>                                   
                         </div>
                         <div class="d-flex justify-content-center">
-                            <div class="col-2 text-center fom-group mt-5">
+                            <div class="col text-center fom-group mt-4">
                             <a href="../index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                             <button type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button>
                             </div>
