@@ -7,7 +7,6 @@ $sql_select1 =  "SELECT * FROM `status`";
 $resultado_select1 = $conexion->query($sql_select1);
 ?>
 
-
 <div class="container mt-4">
     <div class="col">
         <div class="card">
@@ -15,22 +14,27 @@ $resultado_select1 = $conexion->query($sql_select1);
                 <h4 class="">Registro kit</h4>
             </div>
             <div class="card-body">
-              <form action="./agregar_kit.php" method="POST" enctype="multipart/form-data" required>
+              <form action="./agregar_kit.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-4 mt-3">
                         <label for="num_kit" class="form-label">Numero de kit:</label>
                         <input type="text" class="form-control" name="num_kit" id="num_kit" required>
                     </div>
                     <div class="col-4 mt-3">
+                        <label for="id_kit" class="form-label">Id_kit:</label>
+                        <input type="number" class="form-control" name="id_kit" id="id_kit" required>
+                    </div>
+                    <div class="col-4 mt-3">
                         <label for="ip" class="form-label">IP:</label>
                         <input type="text" class="form-control" name="ip" id="ip" required>
                     </div>
+
+                </div>
+                <div class="row">
                     <div class="col-4 mt-3">
                         <label for="tw" class="form-label">Teamviewer:</label>
                         <input type="text" class="form-control" name="tw" id="tw" required>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-4 mt-3">
                      <label for="status" class="form-label">Status</label>
                         <select class="form-select" name="status" id="status" required>

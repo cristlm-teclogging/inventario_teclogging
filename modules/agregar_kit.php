@@ -2,6 +2,7 @@
 require ('../config/conexion.php');
 
 $num_kit = $_POST['num_kit'];
+$id_kit = $_POST['id_kit'];
 $ip = $_POST['ip'];
 $tw = $_POST['tw'];
 $status = $_POST['status'];
@@ -18,7 +19,7 @@ if($result_num_kit->num_rows> 0){
 }elseif ($result_ip->num_rows > 0){
     echo "El ip ya esta registrado.";
 }else{
-    $sql_insert = "INSERT INTO `kit`(`num_kit`, `ip`, `tw`, `status`)VALUES('$num_kit', '$ip', '$tw', '$status')";
+    $sql_insert = "INSERT INTO `kit`(`num_kit`, `id_kit`, `ip`, `tw`, `status`)VALUES('$num_kit', '$id_kit', '$ip', '$tw', '$status')";
     if($conexion->query($sql_insert) === TRUE){
         header('Location: ../index.php');
     }else{
