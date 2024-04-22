@@ -35,7 +35,7 @@
                                 <div class="btn-group" role="group">
                                     <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-box-open fa-xs"></i> Registro de Kit</button>
                                 <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/registrar_kit.php"> <i class="fa-solid fa-box fa-sm"></i> Registrar Nuevo Kit</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/registro_kit.php"> <i class="fa-solid fa-box fa-sm"></i> Registrar Nuevo Kit</a></li>
                                     <li><a class="dropdown-item" href="http://localhost/inventario_tec/index.php"> <i class="fa-solid fa-clipboard fa-sm"></i>  Vista de Kit</a></li>
                                 </ul>
                                 </div>

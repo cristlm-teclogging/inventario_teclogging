@@ -3,6 +3,12 @@
 
 require "../../config/conexion.php";
 
+$sql_antena1 =  "SELECT * FROM `kit`";
+$resultado_antena1 = $conexion->query($sql_antena1);
+
+$sql_item1 =  "SELECT * FROM `relacion_kit_item`";
+$resultado_item1 = $conexion->query($sql_item1);
+
 $sql_select0 =  "SELECT * FROM `antena`";
 $resultado_select0 = $conexion->query($sql_select0);
 
@@ -33,11 +39,21 @@ $resultado_select2 = $conexion->query($sql_select2);
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionSensor">
                                     <div class="accordion-body">
                                         <div class="row">
-                                        <div class="col-4 mt-2">
+                                            <div class="col-4 mt-2">
                                                 <label for="num_kit" class="form-label">Numero de kit:</label>
-                                                <input type="text" class="form-control" name="num_kit" id="num_kit" required>
-                                                
+                                                <input type="text" class="form-control" name="num_kit" id="num_kit" required> 
                                             </div>
+                                            <!--div class="col-4 mt-2">
+                                            <label for="num_kit" class="form-label">Numero de kit</label>
+                                                <select  class="form-select" name="num_kit" id="num_kit" required>
+                                                    <option value="0" selected>Selecciona tu opción</option>  
+                                                         <!-?php 
+                                                    while($row = $resultado_antena1->fetch_assoc()){
+                                                             ?>
+                                                    <option value="<!-?php echo $row['num_kit']; ?>"><!-?php echo $row['num_kit']; ?></option>
+                                                        <!-?php } ?>
+                                                </select>
+                                            </div-->
                                             <div class="col-4 mt-2">
                                                 <label for="ip" class="form-label">IP:</label>
                                                 <input type="text" class="form-control" name="ip" id="ip" required>
@@ -50,7 +66,7 @@ $resultado_select2 = $conexion->query($sql_select2);
                                         <div class="col-4 mt-2">
                                                 <label for="status" class="form-label">Status</label>
                                             <select class="form-select" name="status" id="status" required>
-                                                <option value="0" selected>Selecciona tu opción</option>
+                                                <option value="" selected disabled>Selecciona tu opción</option>
                                                  <?php 
                                                  while($row = $resultado_select1->fetch_assoc()){
                                                  ?>
@@ -71,34 +87,39 @@ $resultado_select2 = $conexion->query($sql_select2);
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSensor">
                                     <div class="accordion-body">
                                         <div class="row">
-                                        <!--div class="col-4 mt-2">
-                                                <label for="num_kit" class="form-label">Numero kit:</label>
-                                                <input type="text" class="form-control" name="num_kit" id="num_kit" required>
-                                            </div-->
+                                            <div class="col-4 mt-2">
+                                                <label for="id_item" class="form-label">Tipo de item:</label>
+                                                <select name="id_item" id="id_item" class="form-select" required>
+                                                    <option value="" selected disabled>Selecciona el tipo de item</option>
+                                                    <?php
+                                                    while($row = $resultado_item1->fetch_assoc()){ 
+                                                        ?>
+                                                    <option value="<?php echo $row['id_item']; ?>"><?php echo $row['tipo_item']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
                                             <div class="col-4 mt-2">
                                                 <label for="num_plato" class="form-label">Numero plato:</label>
                                                 <input type="text" class="form-control" name="num_plato" id="num_plato" required>
                                             </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-4 mt-2">
                                                 <label for="ns_modem" class="form-label">Numero serie del Modem:</label>
                                                 <input type="text" class="form-control" name="ns_modem" id="ns_modem" required>  
                                             </div>
-                                        </divs>
-                                        <div class="row">
                                             <div class="col-4 mt-2">
-                                            <label for="status" class="form-label">Status</label>
-                                            <select class="form-select" name="status" id="status"  required>
-                                            <option value="0" selected>Selecciona tu opción</option>
-                                            <?php 
-                                                while($row = $resultado_select2->fetch_assoc()){
-                                            ?>
-                                            <option value="<?php echo $row['id_status']; ?>"><?php echo $row['status']; ?></option>
-                                             <?php } ?>
-                                             </select>                                           
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
+                                             <label for="status" class="form-label">Status</label>
+                                                 <select class="form-select" name="status" id="status"  required>
+                                                     <option value="" selected>Selecciona tu opción</option>
+                                                    <?php 
+                                                     while($row = $resultado_select2->fetch_assoc()){
+                                                    ?>
+                                                <option value="<?php echo $row['id_status']; ?>"><?php echo $row['status']; ?></option>
+                                                    <?php } ?>
+                                                </select>                                           
+                                            </div>                    
+                                    </div>    
                                 </div>
                             </div>
                         </div>
@@ -107,7 +128,7 @@ $resultado_select2 = $conexion->query($sql_select2);
                 </div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <div class="col text-center form-group mt-7">
+                        <div class="col text-center form-group mt-2">
                             <a href="index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                             <button  type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button> 
                         </div>
