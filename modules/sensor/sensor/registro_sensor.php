@@ -3,8 +3,14 @@
 
 require "../../config/conexion.php";
 
-$sql_item1 =  "SELECT * FROM `marca`";
+$sql_item1 =  "SELECT * FROM `relacion_kit_item`";
 $resultado_item1 = $conexion->query($sql_item1);
+
+$sql_item2 =  "SELECT * FROM `marca`";
+$resultado_item2 = $conexion->query($sql_item2);
+
+$sql_item3 =  "SELECT * FROM `relacion_kit_item`";
+$resultado_item3 = $conexion->query($sql_item3);
 
 $sql_item2 =  "SELECT * FROM `estado_item`";
 $resultado_item2 = $conexion->query($sql_item2);
@@ -41,6 +47,15 @@ $resultado_select1 = $conexion->query($sql_select1);
                                                 <input type="text" class="form-control" name="num_serie" id="num_serie"required>
                                             </div>
                                             <div class="col-4 mt-2">
+                                                <label for="id_item" class="form-label">Id item</label>
+                                                <select name="id_item" id="id_item" class="form-select" required>
+                                                    <option value="" selected disabled>Selecciona tu opción</option>
+                                                        <?php while($row = $resultado_item1->fetch_assoc()){ ?>
+                                                    <option value="<?php echo $row['id_item']; ?>"><?php echo $row['tipo_item']; ?></option>
+                                                        <?php } ?>
+                                                </select>
+                                              </div>
+                                            <div class="col-4 mt-2">
                                                 <label for="modelo" class="form-label">Modelo:</label>
                                                 <input type="text" class="form-control" name="modelo" id="modelo" required>
                                             </div>
@@ -49,7 +64,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                                             <select name="marca" id="marca" class="form-select">
                                                  <option value="0" selected>Selecciona tu opción</option>
                                                 <?php 
-                                                    while($row = $resultado_item1->fetch_assoc()){
+                                                    while($row = $resultado_item2->fetch_assoc()){
                                                 ?>
                                                 <option value="<?php echo $row['id_marca']; ?>"><?php echo $row['nombre_marca']; ?></option>
                                                 <?php } ?>
@@ -104,6 +119,15 @@ $resultado_select1 = $conexion->query($sql_select1);
                                     <div class="accordion-body">
                                         <div class="row">
                                             <!--num_kit se agregar en el primer formulaio para la tabla dos"-->
+                                            <div class="col-4 mt-2">
+                                                <label for="id_item" class="form-label">Id item</label>
+                                                <select name="id_item" id="id_item" class="form-select" required>
+                                                    <option value="" selected disabled>Selecciona tu opción</option>
+                                                        <?php while($row = $resultado_item3->fetch_assoc()){ ?>
+                                                    <option value="<?php echo $row['id_item']; ?>"><?php echo $row['tipo_item']; ?></option>
+                                                        <?php } ?>
+                                                </select>
+                                              </div>
                                             <div class="col-4 mt-2">
                                                 <label for="rango" class="form-label">Rango:</label>
                                                 <input type="text" class="form-control" name="rango" id="rango" required>                                            
