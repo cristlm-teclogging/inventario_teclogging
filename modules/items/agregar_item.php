@@ -2,6 +2,7 @@
 require '../../config/conexion.php';
 
 $num_serie = $_POST['num_serie'];
+$id_item = $_POST['id_item'];
 $modelo = $_POST['modelo'];
 $marca = $_POST['marca'];
 $descripcion = $_POST['descripcion'];
@@ -25,7 +26,7 @@ if($result_num_serie->num_rows> 0){
 }
 */
 
-$sql = "INSERT INTO `items`(`num_serie`, `modelo`, `marca`, `descripcion`, `nombre`, `estado_item`, `status`)VALUES('$num_serie', '$modelo', '$marca', '$descripcion', '$nombre', '$estado', '$status')";
+$sql = "INSERT INTO `items`(`num_serie`, `id_item`, `modelo`, `marca`, `descripcion`, `nombre`, `estado_item`, `status`)VALUES('$num_serie', '$id_item', '$modelo', '$marca', '$descripcion', '$nombre', '$estado', '$status')";
 
 
 $resultado = $conexion -> query($sql);

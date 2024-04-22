@@ -33,27 +33,39 @@ $row = $resultado->fetch_assoc();
                             <input type="text" class="form-control" name="num_serie" id="num_kit" value="<?php echo $row['num_serie']?>" readonly>          
                         </div>
                         <div class="col-4 mt-3">
+                            <label for="id_item" class="form-label">Id de Item</label>
+                            <input type="text" class="form-control" name="id_item" id="id_item" value="<?php echo $row['id_item']?>" readonly>          
+                        </div>
+                        <div class="col-4 mt-3">
                             <label for="modelo" class="form-label">Modelo:</label>
                             <input type="text" class="form-control" name="modelo" id="modelo" value="<?php echo $row['modelo']?>">          
                         </div>
 
-                        <div class="col-4 mt-3">
-                            <label for="marca" class="form-label">Marca</label>
-                            <input type="text" class="form-control" name="marca" id="marca" value="<?php echo $row['marca']?>">          
-                        </div>
-                        
-                        <div class="col-4 mt-3">
-                            <label for="descripcion" class="form-label">Descripcion</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion" value="<?php echo $row['descripcion']?>">          
-                        </div>
-                        <div class="col-4 mt-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $row['nombre']?>">          
-                        </div>
+                    </div>  
+                        <div class="row">
+                            <div class="col-4 mt-3">
+                                <label for="descripcion" class="form-label">Descripcion</label>
+                                <input type="text" class="form-control" name="descripcion" id="descripcion" value="<?php echo $row['descripcion']?>">          
+                            </div>
+                            <div class="col-4 mt-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $row['nombre']?>">          
+                            </div>
+                            <div class="col-4 mt-3">
+                                <label for="marca" class="form-label">Marca:</label>
+                                 <select name="marca" id="marca" class="form-select">
+                                    <option value="" selected disabled>Selecciona tu opción</option>
+                                        <?php 
+                                     while($row = $resultado_select0->fetch_assoc()){
+                                            ?>
+                                    <option value="<?php echo $row['id_marca']; ?>"><?php echo $row['nombre_marca']; ?></option>
+                                        <?php } ?>
+                                </select>         
+                            </div>
                         <div class="col-4 mt-3">
                          <label for="estado_item" class="form-label">Estado Item</label>
                         <select class="form-select" name="estado_item" id="estado_item" value="<?php echo $row['estado_item']?>">
-                             <option value="0" selected>Selecciona tu opción</option>
+                             <option value="" selected disabled>Selecciona tu opción</option>
                              <?php 
                              while($row = $resultado_select1->fetch_assoc()){
                              ?>
@@ -65,7 +77,7 @@ $row = $resultado->fetch_assoc();
                         <div class="col-4 mt-3">
                          <label for="status" class="form-label">Status</label>
                         <select class="form-select" name="status" id="status" value="<?php echo $row['status']?>">
-                             <option value="0" selected>Selecciona tu opción</option>
+                             <option value="" selected disabled>Selecciona tu opción</option>
                              <?php 
                              while($row = $resultado_select2->fetch_assoc()){
                              ?>
@@ -74,7 +86,7 @@ $row = $resultado->fetch_assoc();
                         </select>                                   
                         </div>
                         <div class="d-flex justify-content-center">
-                            <div class="col-2 text-center fom-group mt-5">
+                            <div class="col text-center fom-group mt-4">
                             <a href="index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                             <button type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button>
                             </div>
