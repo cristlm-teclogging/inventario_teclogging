@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$user = "root";
+$user = "";
 $password = "";
-$db = "almacen_tecloggin";
+$db = "";
 
 $conexion = new mysqli($host, $user, $password, $db);
 
