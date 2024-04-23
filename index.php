@@ -45,6 +45,7 @@
                 <table class="table table-sm table-hover table-bordered ">
                     <thead>
                         <th>Numero_kit</th>
+                        <th>id_kit</th>
                         <th>Ip</th>
                         <th>Teamviewer</th>
                         <th>Status</th>
@@ -56,7 +57,7 @@
                     <?php
                        require "./config/conexion.php";
 
-                       $sql = "SELECT kit.num_kit as 'num_kit', kit.ip as 'ip', kit.tw as 'tw', kit.status as 'status_kit', st.id_status as 'id_status', st.status as 'status' FROM kit kit LEFT JOIN status st ON kit.status = st.id_status";
+                       $sql = "SELECT kit.num_kit as 'num_kit', kit.id_kit as 'id_kit', kit.ip as 'ip', kit.tw as 'tw', kit.status as 'status_kit', st.id_status as 'id_status', st.status as 'status' FROM kit kit LEFT JOIN status st ON kit.status = st.id_status";
                    
                        $resultado = $conexion->query($sql);
 
@@ -65,6 +66,7 @@
                             <!--corregir el nombre de las propiedades-->
                             
                             <td><?php echo $row['num_kit'];?></td>
+                            <td><?php echo $row['id_kit'];?></td>
                             <td><?php echo $row['ip'];?></td>
                             <td><?php echo $row['tw'];?></td>
                             <td><?php echo $row['status'];?></td>
