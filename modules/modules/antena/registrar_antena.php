@@ -9,6 +9,9 @@ $resultado_antena1 = $conexion->query($sql_antena1);
 $sql_item1 =  "SELECT * FROM `relacion_kit_item`";
 $resultado_item1 = $conexion->query($sql_item1);
 
+$sql_item2 =  "SELECT * FROM `estado_item`";
+$resultado_item2 = $conexion->query($sql_item2);
+
 $sql_select0 =  "SELECT * FROM `antena`";
 $resultado_select0 = $conexion->query($sql_select0);
 
@@ -43,6 +46,10 @@ $resultado_select2 = $conexion->query($sql_select2);
                                                 <label for="num_kit" class="form-label">Numero de kit:</label>
                                                 <input type="text" class="form-control" name="num_kit" id="num_kit" required> 
                                             </div>
+                                            <div class="col-4 mt-2">
+                                                 <label for="id_kit" class="form-label">Id_kit:</label>
+                                                <input type="number" class="form-control" name="id_kit" id="id_kit" required>
+                                            </div>
                                             <!--div class="col-4 mt-2">
                                             <label for="num_kit" class="form-label">Numero de kit</label>
                                                 <select  class="form-select" name="num_kit" id="num_kit" required>
@@ -58,10 +65,11 @@ $resultado_select2 = $conexion->query($sql_select2);
                                                 <label for="ip" class="form-label">IP:</label>
                                                 <input type="text" class="form-control" name="ip" id="ip" required>
                                             </div>
-                                            <div class="col-4 mt-2">
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-4 mt-2">
                                                 <label for="tw" class="form-label">Teamviewer:</label>
                                                 <input type="text" class="form-control" name="tw" id="tw" required>                                             
-                                            </div>
                                         </div>
                                         <div class="col-4 mt-2">
                                                 <label for="status" class="form-label">Status</label>
@@ -73,6 +81,7 @@ $resultado_select2 = $conexion->query($sql_select2);
                                                 <option value="<?php echo $row['id_status']; ?>"><?php echo $row['status']; ?></option>
                                                 <?php } ?>
                                             </select>
+                                        </div>
                                         </div>
                                         </div>
                                     </div>
@@ -107,6 +116,18 @@ $resultado_select2 = $conexion->query($sql_select2);
                                             <div class="col-4 mt-2">
                                                 <label for="ns_modem" class="form-label">Numero serie del Modem:</label>
                                                 <input type="text" class="form-control" name="ns_modem" id="ns_modem" required>  
+                                            </div>
+                                            <div class="col-4 mt-2">
+                                            <label for="status" class="form-label">Estado del item</label>
+                                                 <select class="form-select" name="estado_item" id="estado_item"  required>
+                                                     <option value="" selected>Selecciona tu opción</option>
+                                                    <?php 
+                                                     while($row = $resultado_item2->fetch_assoc()){
+                                                    ?>
+                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado_item']; ?></option>
+                                                    <?php } ?>
+                                                </select>    
+
                                             </div>
                                             <div class="col-4 mt-2">
                                              <label for="status" class="form-label">Status</label>

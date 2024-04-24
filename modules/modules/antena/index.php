@@ -46,6 +46,7 @@
                             <table class="table table-sm table-hover table-bordered">
                                 <thead>
                                 <th>Numero_kit</th>
+                                <th>Tipo de Item</th>
                                 <th>Numero_plato</th>
                                 <th>Num_serie del moden</th>
                                 <th>status</th>
@@ -57,7 +58,7 @@
                      <?php 
                        require "../../config/conexion.php";
 
-                       $sql = "SELECT ant.num_kit as 'num_kit', ant.num_plato as 'num_plato', ant.ns_modem as 'ns_modem', ant.status as 'status_antena', sta.id_status as 'id_status', sta.status as 'status' FROM antena ant LEFT JOIN status sta ON ant.status = sta.id_status";
+                       $sql = "SELECT ant.num_kit as 'num_kit', ant.num_plato as 'num_plato', ant.ns_modem as 'ns_modem', ant.status as 'status_antena', sta.id_status as 'id_status', sta.status as 'status', rki.id_kit as 'id_kit', rki.id_item as 'id_item', rki.tipo_item as 'tipo_item' FROM antena ant LEFT JOIN status sta ON ant.status = sta.id_status LEFT JOIN relacion_kit_item rki ON ant.id_item = rki.id_item";
                        $resultado = $conexion->query($sql);
 
                        while($row = $resultado->fetch_assoc()) { ?>
@@ -65,6 +66,7 @@
                                          <!--corregir el nombre de las propiedades-->
                                          
                                          <td><?php echo $row['num_kit'];?></td>
+                                         <td><?php echo $row['tipo_item'];?></td>
                                          <td><?php echo $row['num_plato'];?></td>
                                          <td><?php echo $row['ns_modem'];?></td>
                                          <td><?php echo $row['status'];?></td>
