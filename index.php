@@ -36,6 +36,7 @@
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/antena/registrar_antena.php"> <i class="fa-solid fa-satellite-dish fa-sm"></i> Registrar Nueva Antena</a></li>
                             <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/antena/index.php"> <i class="fa-solid fa-clipboard fa-sm"></i>  Vista de Antenas</a></li>
+                            <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/kit_item/registrar_ki.php"> <i class="fa-solid fa-scroll fa-sm"></i>  Registrar kit_item</a></li>
                         </ul>
                     </div>
                 </div>
