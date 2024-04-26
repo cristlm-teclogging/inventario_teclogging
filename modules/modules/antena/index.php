@@ -45,7 +45,7 @@
                         <div class="col table-responsive">
                             <table class="table table-sm table-hover table-bordered">
                                 <thead>
-                                <th>Numero_kit</th>
+                                <th>Numero_Antena</th>
                                 <th>Tipo de Item</th>
                                 <th>Numero_plato</th>
                                 <th>Num_serie del moden</th>
@@ -58,25 +58,25 @@
                      <?php 
                        require "../../config/conexion.php";
 
-                       $sql = "SELECT ant.num_kit as 'num_kit', ant.num_plato as 'num_plato', ant.ns_modem as 'ns_modem', ant.status as 'status_antena', sta.id_status as 'id_status', sta.status as 'status', rki.id_kit as 'id_kit', rki.id_item as 'id_item', rki.tipo_item as 'tipo_item' FROM antena ant LEFT JOIN status sta ON ant.status = sta.id_status LEFT JOIN relacion_kit_item rki ON ant.id_item = rki.id_item";
+                       $sql = "SELECT ant.num_antena as 'num_antena', ant.num_plato as 'num_plato', ant.ns_modem as 'ns_modem', ant.status as 'status_antena', sta.id_status as 'id_status', sta.status as 'status', rki.id_kit as 'id_kit', rki.id_item as 'id_item', rki.tipo_item as 'tipo_item' FROM antena ant LEFT JOIN status sta ON ant.status = sta.id_status LEFT JOIN relacion_kit_item rki ON ant.id_item = rki.id_item";
                        $resultado = $conexion->query($sql);
 
                        while($row = $resultado->fetch_assoc()) { ?>
                                      <tr>
                                          <!--corregir el nombre de las propiedades-->
                                          
-                                         <td><?php echo $row['num_kit'];?></td>
+                                         <td><?php echo $row['num_antena'];?></td>
                                          <td><?php echo $row['tipo_item'];?></td>
                                          <td><?php echo $row['num_plato'];?></td>
                                          <td><?php echo $row['ns_modem'];?></td>
                                          <td><?php echo $row['status'];?></td>
 
                                          <td class="text-center">
-                                         <a href="./editar_antena.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-warning"> <i class="fa-solid fa-user-pen"></i></a>
+                                         <a href="./editar_antena.php?num_antena=<?php echo $row['num_antena'];?>" class="btn btn-warning"> <i class="fa-solid fa-user-pen"></i></a>
              
                                          </td>
                                          <td class="text-center">
-                                         <a href="./eliminar_antena.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-danger"> <i class="fas fa-trash-can"></i></a>
+                                         <a href="./eliminar_antena.php?num_antena=<?php echo $row['num_antena'];?>" class="btn btn-danger"> <i class="fas fa-trash-can"></i></a>
                                          </td>
              
                                      </tr>

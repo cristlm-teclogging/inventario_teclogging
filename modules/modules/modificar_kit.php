@@ -3,9 +3,9 @@ error_reporting(1);
 
 require_once('../config/conexion.php');
 
-// Variables de la tabla relacion_kit_item
+/* Variables de la tabla relacion_kit_item
 $id_item = $_POST['id_item'];
-$tpo_item = $_POST['tipo_item'];
+$tpo_item = $_POST['tipo_item'];*/
 
 // Variables de la tabla kit
 $id_kit = $_POST['id_kit'];
@@ -14,6 +14,7 @@ $tw = $_POST['tw'];
 $status = $_POST['status'];
 $num_kit = $_POST['num_kit'];
 
+/*
 $conexion->begin_transaction();
 
 $sql_item = $conexion->prepare("INSERT INTO `relacion_kit_item`(`id_kit`, `id_item`, `tipo_item`) VALUES (?, ?, ?)");
@@ -32,12 +33,12 @@ if ($sql_item_executed && $sql_kit_actualizada) {
     $conexion->rollback();
     echo "Error al insertar los datos.";
 }
+*/
 
-/*
 $sql = "UPDATE `kit` SET `ip`='$ip',`tw`='$tw',`status`='$status' WHERE `num_kit` ='$num_kit'";
 $resultado = $conexion->query($sql);
 
 header("Location: ../index.php");
 //actualiar kit y mandarlo al index
-*/
+
 ?>

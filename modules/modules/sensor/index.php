@@ -73,7 +73,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                             <!--corregir el nombre de las propiedades-->
                                          
                             <td class="col-"><?php echo $row['num_serie'];?></td>
-                            <td class="col-"><?php echo $row['tipo_item'];?></td>
+                            <td class="col-"><?php echo $row['id_item_sensor'];?></td>
                             <td class="col-"><?php echo $row['rango'];?></td>
                             <td class="col-"><?php echo $row['output'];?></td>
                             <td class="col-"><?php echo $row['cert_enyca'];?></td>

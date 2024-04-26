@@ -66,29 +66,6 @@ $row = $resultado->fetch_assoc();
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Tipo de Item
-                                    </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionKit">
-                                        <div class="accordion-body">
-                                            <div class="row">
-                                                <!--formualario para agregar el numero de item y el tipo-->
-                                                <div class="col-4 mt-2">
-                                                    <label for="id_item" class="form-label">Id Item:</label>
-                                                    <input type="number" class="form-control" name="id_item" id="id_item" required>
-                                                </div>
-                                                <div class="col-4 mt-2">
-                                                    <label for="tipo_item" class="form-label">Tipo Item:</label>
-                                                    <input type="text" class="form-control" name="tipo_item" id="tipo_item" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         <div class="d-flex justify-content-center">
                             <div class="col text-center fom-group mt-4">
