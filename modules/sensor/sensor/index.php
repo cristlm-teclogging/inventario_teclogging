@@ -50,6 +50,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                 <table class="table table-sm table-hover table-bordered">
                      <thead class="col-">
                         <th class="col-">Numero de Serie</th>
+                        <th class="col-">Tipo de item</th>
                         <th class="col-">Rango</th>
                         <th class="col-">Output</th>
                         <th class="col-">certificado Enyca</th>
@@ -64,14 +65,16 @@ $resultado_select1 = $conexion->query($sql_select1);
                      <?php 
                        require "../../config/conexion.php";
 
-                       $sql = "SELECT sen.num_serie, sen.rango, sen.output, sen.cert_enyca, sen.fecha_calibracion, sen.url_enyca, sen.status, sta.id_status, sta.status FROM sensores sen LEFT JOIN status sta ON sen.status = sta.id_status";
+                       $sql = "SELECT sen.num_serie as 'num_serie', sen.id_item as 'id_item', sen.id_tipo_item as 'id_item_sensor', sen.rango as 'rango', sen.output as 'output', sen.cert_enyca as 'cert_enyca', sen.fecha_calibracion as 'fecha_calibracion', sen.url_enyca as 'url_enyca',sen.status as 'status_sensor', sta.id_status as 'id_status', sta.status as 'status', tp.id_tipo_item as 'id_tipo_item', tp.tipo_item as 'tipo_item' FROM sensores sen LEFT JOIN status sta ON sen.status = sta.id_status LEFT JOIN tipo_item tp ON sen.id_tipo_item = tp.id_tipo_item";
                        $resultado = $conexion->query($sql);
 
                        while($row = $resultado->fetch_assoc()) { ?>
                         <tr class="col-">
                             <!--corregir el nombre de las propiedades-->
-                                         
+
+                            <td class="col-"><?php echo $row['id_item'];?></td>             
                             <td class="col-"><?php echo $row['num_serie'];?></td>
+                            <td class="col-"><?php echo $row['tipo_item'];?></td>
                             <td class="col-"><?php echo $row['rango'];?></td>
                             <td class="col-"><?php echo $row['output'];?></td>
                             <td class="col-"><?php echo $row['cert_enyca'];?></td>
