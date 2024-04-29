@@ -33,15 +33,20 @@ $row = $resultado->fetch_assoc();
                             <input type="text" class="form-control" name="num_serie" id="num_kit" value="<?php echo $row['num_serie']?>" readonly>          
                         </div>
                         <div class="col-4 mt-3">
+                            <label for="id_item" class="form-label">Id de Item</label>
+                            <input type="text" class="form-control" name="id_item" id="id_item" value="<?php echo $row['id_item']?>" readonly>          
+                        </div>
+                        <div class="col-4 mt-3">
                             <label for="modelo" class="form-label">Modelo:</label>
                             <input type="text" class="form-control" name="modelo" id="modelo" value="<?php echo $row['modelo']?>">          
                         </div>
-                        <div class="col-4 mt-3">
-                                <label for="descripcion" class="form-label">Descripcion</label>
-                                <input type="text" class="form-control" name="descripcion" id="descripcion" value="<?php echo $row['descripcion']?>">          
-                        </div>
+
                     </div>  
                         <div class="row">
+                            <div class="col-4 mt-3">
+                                <label for="descripcion" class="form-label">Descripcion</label>
+                                <input type="text" class="form-control" name="descripcion" id="descripcion" value="<?php echo $row['descripcion']?>">          
+                            </div>
                             <div class="col-4 mt-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $row['nombre']?>">          
