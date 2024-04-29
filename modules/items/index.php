@@ -43,6 +43,7 @@
                             <table class="table table-sm table-hover table-bordered">
                                 <thead>
                                 <th class="col-">Numero_serie</th>
+                                <th class="col-">Tipo de Item</th>
                                 <th class="col-">Modelo</th>
                                 <th class="col-">Marca</th>
                                 <th class="col-">Descripcion</th>
@@ -57,7 +58,7 @@
                      <?php 
                        require "../../config/conexion.php";
 
-                       $sql = "SELECT ite.num_serie AS 'num_serie', ite.modelo AS 'modelo', ite.marca AS 'marca', ite.descripcion AS 'descripcion', ite.nombre AS 'nombre', ite.estado_item AS 'estado_item', ite.status AS 'status_item', mar.id_marca AS 'id_marca', mar.nombre_marca AS 'marca', est.id_estado AS 'id_estado', est.estado_item AS 'estado_item', sta.id_status AS 'id_status', sta.status AS 'status' FROM items ite LEFT JOIN marca mar ON ite.marca = mar.id_marca LEFT JOIN estado_item est ON ite.estado_item = est.id_estado LEFT JOIN status sta ON ite.status = sta.id_status";
+                       $sql = "SELECT ite.num_serie as 'num_serie', ite.id_item as 'id_item_ite', ite.modelo as 'modelo', ite.marca as 'marca', ite.descripcion as 'descripcion', ite.nombre as 'nombre', ite.estado_item as 'estado_item', ite.status as 'status_item', sta.id_status as 'id_status', sta.status as 'status', ti.id_item as 'id_item', ti.tipo_item FROM items ite LEFT JOIN status sta ON ite.status = sta.id_status LEFT JOIN tipo_item ti ON ite.id_item = ti.id_item";
                        $resultado = $conexion->query($sql);
 
                        while($row = $resultado->fetch_assoc()) { ?>
@@ -65,6 +66,7 @@
                                          <!--corregir el nombre de las propiedades-->
                                          
                                          <td class="col-"><?php echo $row['num_serie'];?></td>
+                                         <td class="col-"><?php echo $row['tipo_item'];?></td>
                                          <td class="col-"><?php echo $row['modelo'];?></td>
                                          <td class="col-"><?php echo $row['marca'];?></td>
                                          <td class="col-"><?php echo $row['descripcion'];?></td>
