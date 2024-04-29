@@ -45,7 +45,9 @@
                         <div class="col table-responsive">
                             <table class="table table-sm table-hover table-bordered">
                                 <thead>
-                                <th>Numero_kit</th>
+                                <th>ID Item</th>
+                                <th>Numero_Antena</th>
+                                <th>Tipo de Item</th>
                                 <th>Numero_plato</th>
                                 <th>Num_serie del moden</th>
                                 <th>status</th>
@@ -57,24 +59,26 @@
                      <?php 
                        require "../../config/conexion.php";
 
-                       $sql = "SELECT ant.num_kit as 'num_kit', ant.num_plato as 'num_plato', ant.ns_modem as 'ns_modem', ant.status as 'status_antena', sta.id_status as 'id_status', sta.status as 'status' FROM antena ant LEFT JOIN status sta ON ant.status = sta.id_status";
+                       $sql = "SELECT ant.id_item as 'id_item', ant.id_tipo_item as 'id_tipo_item', ant.num_antena as 'num_antena', ant.num_plato as 'num_plato', ant.ns_modem as 'ns_modem', ant.estado_item as 'estado_item', ant.status as 'status_antena', sta.id_status as 'id_status', sta.status as 'status', ti.id_tipo_item as 'id_tipo_item', ti.tipo_item as 'tipo_item' FROM antena ant LEFT JOIN status sta ON ant.status = sta.id_status LEFT JOIN tipo_item ti ON ant.id_tipo_item = ti.id_tipo_item";
                        $resultado = $conexion->query($sql);
 
                        while($row = $resultado->fetch_assoc()) { ?>
                                      <tr>
                                          <!--corregir el nombre de las propiedades-->
                                          
-                                         <td><?php echo $row['num_kit'];?></td>
+                                         <td><?php echo $row['id_item'];?></td>
+                                         <td><?php echo $row['num_antena'];?></td>
+                                         <td><?php echo $row['tipo_item'];?></td>
                                          <td><?php echo $row['num_plato'];?></td>
                                          <td><?php echo $row['ns_modem'];?></td>
                                          <td><?php echo $row['status'];?></td>
 
                                          <td class="text-center">
-                                         <a href="./editar_antena.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-warning"> <i class="fa-solid fa-user-pen"></i></a>
+                                         <a href="./editar_antena.php?num_antena=<?php echo $row['num_antena'];?>" class="btn btn-warning"> <i class="fa-solid fa-user-pen"></i></a>
              
                                          </td>
                                          <td class="text-center">
-                                         <a href="./eliminar_antena.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-danger"> <i class="fas fa-trash-can"></i></a>
+                                         <a href="./eliminar_antena.php?num_antena=<?php echo $row['num_antena'];?>" class="btn btn-danger"> <i class="fas fa-trash-can"></i></a>
                                          </td>
              
                                      </tr>

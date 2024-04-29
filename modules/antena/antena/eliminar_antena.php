@@ -1,10 +1,10 @@
 <?php
 
 require_once('../../config/conexion.php');
-$num_kit=$_GET['num_kit'];
+$num_antena=$_GET['num_antena'];
 
 //eliminar registro de la tabla
-$sql="DELETE FROM `antena` WHERE num_kit ='".$num_kit."'";
+$sql="DELETE FROM `antena` WHERE num_antena ='".$num_antena."'";
 $resultado=mysqli_query($conexion,$sql);
 
 
