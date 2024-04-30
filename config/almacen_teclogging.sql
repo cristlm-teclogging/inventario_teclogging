@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-04-2024 a las 01:22:27
+-- Tiempo de generación: 01-05-2024 a las 00:55:34
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -28,14 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `antena` (
-  `id_kit` int(11) NOT NULL,
-  `id_item` int(11) NOT NULL,
+  `id_item` varchar(255) NOT NULL,
+  `id_tipo_item` int(11) NOT NULL,
   `num_antena` varchar(255) NOT NULL,
   `num_plato` varchar(200) DEFAULT NULL,
   `ns_modem` varchar(200) DEFAULT NULL,
   `estado_item` varchar(255) NOT NULL,
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `antena`
+--
+
+INSERT INTO `antena` (`id_item`, `id_tipo_item`, `num_antena`, `num_plato`, `ns_modem`, `estado_item`, `status`) VALUES
+('1', 3, 'Antena 1 ', 'plato 1', 'modem315226', '1', '1'),
+('5', 3, 'Antena 2', 'plato 2', 'modem9902148', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -144,7 +152,8 @@ INSERT INTO `ip` (`id_ip`, `direccion_ip`, `num_kit`) VALUES
 
 CREATE TABLE `items` (
   `num_serie` varchar(255) NOT NULL,
-  `id_item` int(11) NOT NULL,
+  `id_item` varchar(255) NOT NULL,
+  `id_tipo_item` int(11) NOT NULL,
   `modelo` varchar(255) DEFAULT NULL,
   `marca` varchar(200) DEFAULT NULL,
   `descripcion` mediumtext DEFAULT NULL,
@@ -157,9 +166,8 @@ CREATE TABLE `items` (
 -- Volcado de datos para la tabla `items`
 --
 
-INSERT INTO `items` (`num_serie`, `id_item`, `modelo`, `marca`, `descripcion`, `nombre`, `estado_item`, `status`) VALUES
-('11112', 1, 'TGY468', '1', 'Sensor de presion ', 'SeyoGomer', '1', '1'),
-('12145477', 1, 'HYCV9376', '1', 'Sensor de presion ', 'Teclog_Temps', '1', '1');
+INSERT INTO `items` (`num_serie`, `id_item`, `id_tipo_item`, `modelo`, `marca`, `descripcion`, `nombre`, `estado_item`, `status`) VALUES
+('4321', '4', 1, 'TSMU1356', '1', 'Sensor de Temperatura', 'Teclog_proximidad', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -206,6 +214,29 @@ INSERT INTO `marca` (`id_marca`, `nombre_marca`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `relacion_item_tipo_item`
+--
+
+CREATE TABLE `relacion_item_tipo_item` (
+  `id_item` varchar(255) NOT NULL,
+  `id_tipo_item` int(11) NOT NULL,
+  `tipo_item` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `relacion_item_tipo_item`
+--
+
+INSERT INTO `relacion_item_tipo_item` (`id_item`, `id_tipo_item`, `tipo_item`) VALUES
+('3', 2, ''),
+('1', 2, ''),
+('4', 1, ''),
+('4', 2, ''),
+('5', 3, '');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `relacion_kit_item`
 --
 
@@ -213,19 +244,6 @@ CREATE TABLE `relacion_kit_item` (
   `id_kit` varchar(255) NOT NULL,
   `id_item` varchar(255) NOT NULL,
   `tipo_item` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `relacion_kit_sensor`
---
-
-CREATE TABLE `relacion_kit_sensor` (
-  `num_kit` varchar(255) NOT NULL,
-  `num_serie` varchar(255) NOT NULL,
-  `num_kit_antena` varchar(200) NOT NULL,
-  `num_serie_sensor` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -261,7 +279,8 @@ INSERT INTO `salida` (`id_salida`, `fecha_salida`, `ubicacion`, `compañia`, `nu
 
 CREATE TABLE `sensores` (
   `num_serie` varchar(255) NOT NULL,
-  `id_item` int(11) NOT NULL,
+  `id_item` varchar(255) NOT NULL,
+  `id_tipo_item` int(11) NOT NULL,
   `rango` varchar(200) DEFAULT NULL,
   `output` varchar(200) DEFAULT NULL,
   `cert_enyca` varchar(255) DEFAULT NULL,
@@ -275,8 +294,10 @@ CREATE TABLE `sensores` (
 -- Volcado de datos para la tabla `sensores`
 --
 
-INSERT INTO `sensores` (`num_serie`, `id_item`, `rango`, `output`, `cert_enyca`, `fecha_calibracion`, `url_enyca`, `estado_item`, `status`) VALUES
-('12145477', 2, '0 - 200 °C', '4-200 MHz', 'Certifg0-ik3', '2024-04-17', 'http://34.41.25.255/', '', '1');
+INSERT INTO `sensores` (`num_serie`, `id_item`, `id_tipo_item`, `rango`, `output`, `cert_enyca`, `fecha_calibracion`, `url_enyca`, `estado_item`, `status`) VALUES
+('11112', '3', 2, '11000', '4-200 MHz', 'certific1204059', '2024-06-20', 'http://34.41.25.255/', '1', '2'),
+('12145477', '1', 2, '11000', '4-200 MHz', 'certific2143457', '2024-04-25', 'http://34.41.25.255/', '1', '1'),
+('12145477', '4', 2, '11000', '4-200 MHz', 'certific1204059', '2024-04-30', 'http://34.41.25.255/', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -305,7 +326,7 @@ INSERT INTO `status` (`id_status`, `status`) VALUES
 --
 
 CREATE TABLE `tipo_item` (
-  `id_item` int(11) NOT NULL,
+  `id_tipo_item` int(11) NOT NULL,
   `tipo_item` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -313,7 +334,7 @@ CREATE TABLE `tipo_item` (
 -- Volcado de datos para la tabla `tipo_item`
 --
 
-INSERT INTO `tipo_item` (`id_item`, `tipo_item`) VALUES
+INSERT INTO `tipo_item` (`id_tipo_item`, `tipo_item`) VALUES
 (1, 'item'),
 (2, 'sensor'),
 (3, 'antena');
@@ -344,8 +365,7 @@ INSERT INTO `ubicacion` (`id_ubicacion`, `ubicacion`) VALUES
 -- Indices de la tabla `antena`
 --
 ALTER TABLE `antena`
-  ADD PRIMARY KEY (`id_kit`),
-  ADD UNIQUE KEY `id_item` (`id_item`),
+  ADD PRIMARY KEY (`id_item`),
   ADD UNIQUE KEY `num_antena` (`num_antena`);
 
 --
@@ -377,7 +397,7 @@ ALTER TABLE `ip`
 -- Indices de la tabla `items`
 --
 ALTER TABLE `items`
-  ADD PRIMARY KEY (`num_serie`);
+  ADD PRIMARY KEY (`id_item`);
 
 --
 -- Indices de la tabla `kit`
@@ -397,15 +417,6 @@ ALTER TABLE `marca`
 ALTER TABLE `relacion_kit_item`
   ADD UNIQUE KEY `id_kit` (`id_kit`),
   ADD UNIQUE KEY `id_item` (`id_item`);
-
---
--- Indices de la tabla `relacion_kit_sensor`
---
-ALTER TABLE `relacion_kit_sensor`
-  ADD PRIMARY KEY (`num_kit`),
-  ADD UNIQUE KEY `num_antena` (`num_kit_antena`),
-  ADD UNIQUE KEY `serie_sensor` (`num_serie_sensor`),
-  ADD KEY `num_serie` (`num_serie`);
 
 --
 -- Indices de la tabla `salida`
@@ -430,12 +441,6 @@ ALTER TABLE `ubicacion`
 --
 
 --
--- AUTO_INCREMENT de la tabla `antena`
---
-ALTER TABLE `antena`
-  MODIFY `id_kit` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `cert_enyca`
 --
 ALTER TABLE `cert_enyca`
@@ -455,7 +460,7 @@ ALTER TABLE `status`
 -- Filtros para la tabla `relacion_kit_item`
 --
 ALTER TABLE `relacion_kit_item`
-  ADD CONSTRAINT `relacion_kit_item_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `items` (`num_serie`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `relacion_kit_item_ibfk_1` FOREIGN KEY (`id_kit`) REFERENCES `kit` (`num_kit`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
