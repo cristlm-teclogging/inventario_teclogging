@@ -9,7 +9,7 @@ $resultado_select1 = $conexion->query($sql_select1);
 $sql_item1 =  "SELECT * FROM `kit`";
 $resultado_item1 = $conexion->query($sql_item1);
 
-$sql_item2 =  "SELECT * FROM `relacion_kit_item`";
+$sql_item2 =  "SELECT * FROM `relacion_item_tipo_item`";
 $resultado_item2 = $conexion->query($sql_item2);
 
 $sql_item3 =  "SELECT * FROM `tipo_item`";
@@ -35,10 +35,13 @@ $resultado_item3 = $conexion->query($sql_item3);
                         </select>
                         </div>
                         <div class="col-4 mt-2">
-                            <div class="form-group">
-                                <label for="id_item" class="form-label">id item:</label>
-                                <input type="text" class="form-control" name="id_item" id="id_item" required>
-                            </div>
+                            <label for="id_item" class="form-label">Id del item</label>
+                             <select name="id_item" id="id_item" class="form-select" required>
+                                <option value="" selected disabled>Selecciona tu opción</option>
+                                    <?php while($row = $resultado_item2->fetch_assoc()){ ?>
+                                 <option value="<?php echo $row['id_item']; ?>"><?php echo $row['id_item']; ?></option>
+                                     <?php } ?>
+                            </select>
                         </div>
 
                         <div class="col-4 mt-2">
@@ -46,15 +49,15 @@ $resultado_item3 = $conexion->query($sql_item3);
                              <select name="tipo_item" id="tipo_item" class="form-select" required>
                                 <option value="" selected disabled>Selecciona tu opción</option>
                                     <?php while($row = $resultado_item3->fetch_assoc()){ ?>
-                                 <option value="<?php echo $row['id_item']; ?>"><?php echo $row['tipo_item']; ?></option>
+                                 <option value="<?php echo $row['id_tipo_item']; ?>"><?php echo $row['tipo_item']; ?></option>
                                      <?php } ?>
-                        </select>
+                            </select>
                         </div>
 
                     </div>
                     <div class="d-flex justify-content-center">
                             <div class="col text-center form-group mt-5">
-                            <a href="../../index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
+                            <a href="./index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                         <button  type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button> 
                             </div>
                         </div>

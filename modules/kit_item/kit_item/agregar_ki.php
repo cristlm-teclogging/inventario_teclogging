@@ -13,7 +13,7 @@ $sql = "INSERT INTO `relacion_kit_item`(`id_kit`, `id_item`,`tipo_item`)VALUES('
 $resultado = $conexion -> query($sql);
 
 if($resultado){
-    header('Location: ../index.php');
+    header('Location: ./index.php');
 }else{
     echo "No se insertaron los datos";
 }
