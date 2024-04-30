@@ -40,16 +40,16 @@ $resultado_select2 = $conexion->query($sql_select2);
             <div class="card-body">
               <form action="./agregar_item.php" method="POST" enctype="multipart/form-data" required>
                 <div class="row">
-                <div class="col-4 mt-3">
-                        <div class="form-group">
-                            <label for="id_item" class="form-label">ID item:</label>
-                            <input type="text" class="form-control" name="id_item" id="id_item"required>
-                        </div>
-                    </div>
                     <div class="col-4 mt-3">
                         <div class="form-group">
                             <label for="num_serie" class="form-label">Numero de Serie:</label>
                             <input type="text" class="form-control" name="num_serie" id="num_serie"required>
+                        </div>
+                    </div>
+                    <div class="col-4 mt-3">
+                        <div class="form-group">
+                            <label for="id_item" class="form-label">ID item:</label>
+                            <input type="text" class="form-control" name="id_item" id="id_item"required>
                         </div>
                     </div>
                     <div class="col-4 mt-3">
