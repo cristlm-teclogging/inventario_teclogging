@@ -50,6 +50,7 @@ $resultado_select1 = $conexion->query($sql_select1);
                 <table class="table table-sm table-hover table-bordered">
                      <thead class="col-">
                         <th class="col-">Numero de Serie</th>
+                        <th class="col-">ID item</th>
                         <th class="col-">Tipo de item</th>
                         <th class="col-">Rango</th>
                         <th class="col-">Output</th>
@@ -71,9 +72,9 @@ $resultado_select1 = $conexion->query($sql_select1);
                        while($row = $resultado->fetch_assoc()) { ?>
                         <tr class="col-">
                             <!--corregir el nombre de las propiedades-->
-
-                            <td class="col-"><?php echo $row['id_item'];?></td>             
+       
                             <td class="col-"><?php echo $row['num_serie'];?></td>
+                            <td class="col-"><?php echo $row['id_item'];?></td> 
                             <td class="col-"><?php echo $row['tipo_item'];?></td>
                             <td class="col-"><?php echo $row['rango'];?></td>
                             <td class="col-"><?php echo $row['output'];?></td>

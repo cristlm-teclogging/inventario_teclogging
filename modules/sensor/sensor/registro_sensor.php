@@ -54,13 +54,13 @@ $resultado_select1 = $conexion->query($sql_select1);
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionSensor">
                                     <div class="accordion-body">
                                         <div class="row">
-                                        <div class="col-4 mt-2">
-                                                <label for="id_item" class="form-label">Id item:</label>
-                                                <input type="text" class="form-control" name="id_item" id="id_item"required>
-                                            </div>
                                             <div class="col-4 mt-2">
                                                 <label for="num_serie" class="form-label">Numero de Serie:</label>
                                                 <input type="text" class="form-control" name="num_serie" id="num_serie"required>
+                                            </div>
+                                            <div class="col-4 mt-2">
+                                                <label for="id_item" class="form-label">Id item:</label>
+                                                <input type="text" class="form-control" name="id_item" id="id_item"required>
                                             </div>
                                             <div class="col-4 mt-2">
                                                 <label for="id_tipo_item" class="form-label">Tipo de Item:</label>
