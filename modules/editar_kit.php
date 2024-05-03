@@ -38,16 +38,20 @@ $row = $resultado->fetch_assoc();
                                                     <input type="text" class="form-control" name="num_kit" id="num_kit" value="<?php echo $row['num_kit']?>"readonly>
                                                 </div>
                                                 <div class="col-4 mt-3">
+                                                    <label for="id_kit" class="form-label">ID de kit</label>
+                                                    <input type="text" class="form-control" name="id_kit" id="id_kit" value="<?php echo $row['id_kit']?>"readonly>
+                                                </div>
+                                                <div class="col-4 mt-3">
                                                     <label for="ip" class="form-label">IP</label>
                                                     <input type="text" class="form-control" name="ip" id="ip" value="<?php echo $row['ip']?>" readonly>          
                                                 </div>
-                                                <div class="col-4 mt-3">
-                                                    <label for="tw" class="form-label">Teamviewer</label>
-                                                    <input type="text" class="form-control" name="tw" id="tw" value="<?php echo $row['tw']?>" required>          
-                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-4 mt-3">
+                                                    <label for="tw" class="form-label">Teamviewer</label>
+                                                    <input type="text" class="form-control" name="tw" id="tw" value="<?php echo $row['tw']?>" readonly>               
+                                                 </div>
+                                                <div class="col-4 mt-3">
                                                 <label for="status" class="form-label">Status</label>
                                                     <select class="form-select" name="status" id="status" value="<?php echo $row['status']?>" require>
                                                          <option value="" selected disabled>Selecciona tu opción</option>
@@ -62,33 +66,11 @@ $row = $resultado->fetch_assoc();
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button" collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Tipo de Item
-                                    </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionKit">
-                                        <div class="accordion-body">
-                                            <div class="row">
-                                                <div class="col-4 mt-2">
-                                                    <label for="id_item" class="form-label">Id Item:</label>
-                                                    <input type="text" class="form-control" name="id_item" id="id_item" required>
-                                                </div>
-                                                <div class="col-4 mt-2">
-                                                    <label for="tipo_item" class="form-label">Tipo Item:</label>
-                                                    <input type="text" class="form-control" name="tipo_item" id="tipo_item" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         <div class="d-flex justify-content-center">
                             <div class="col text-center fom-group mt-4">
-                            <a href="../index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
-                            <button type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button>
+                                <a href="../index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
+                                <button type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button>
                             </div>
                         </div>
 

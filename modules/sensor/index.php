@@ -42,57 +42,94 @@ $resultado_select1 = $conexion->query($sql_select1);
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/items/index.php"><i class="fa-solid fa-clipboard-list fa-sm"></i> Tabla de Item</a></li>
                             </ul>
                         </div>
-                    <!--a href="./registro_sensor.php" class="btn btn-primary">
-                    Agregar nuevo registro <i class="fa-solid fa-circle-plus"></i>
-                    </a-->
                     <hr>
-                <div class="col- table-responsive">
-                <table class="table table-sm table-hover table-bordered">
-                     <thead class="col-">
-                        <th class="col-">Numero de Serie</th>
-                        <th class="col-">Rango</th>
-                        <th class="col-">Output</th>
-                        <th class="col-">certificado Enyca</th>
-                        <th class="col-">Fecha Calibracion</th>
-                        <th class="col-">URL Enyca</th>
-                        <th class="col-">Status</th>
+                    <?php 
+                   require "../../config/conexion.php";
 
-                        <th class="col-">Editar</th>
-                        <th class="col-">Eliminar</th>
-                    </thead>
-                    <tbody>
-                     <?php 
-                       require "../../config/conexion.php";
+                   // Configuración de la paginación
+                   $resultados_por_pagina = 3; // Cambia este valor según tus necesidades
+                   if (isset($_GET['pagina'])) {
+                       $pagina = $_GET['pagina'];
+                   }else{
+                       $pagina = 1;
+                   }
 
-                       $sql = "SELECT sen.num_serie, sen.rango, sen.output, sen.cert_enyca, sen.fecha_calibracion, sen.url_enyca, sen.status, sta.id_status, sta.status FROM sensores sen LEFT JOIN status sta ON sen.status = sta.id_status";
-                       $resultado = $conexion->query($sql);
+                   $empezar_desde = ($pagina - 1) * $resultados_por_pagina;
 
-                       while($row = $resultado->fetch_assoc()) { ?>
-                        <tr class="col-">
-                            <!--corregir el nombre de las propiedades-->
-                                         
-                            <td class="col-"><?php echo $row['num_serie'];?></td>
-                            <td class="col-"><?php echo $row['rango'];?></td>
-                            <td class="col-"><?php echo $row['output'];?></td>
-                            <td class="col-"><?php echo $row['cert_enyca'];?></td>
-                            <td class="col-"><?php echo $row['fecha_calibracion'];?></td>
-                            <td><a href="<?php echo $row['url_enyca']; ?>" class="link-primary" target="_blank"><?php echo $row ['url_enyca']?></a></td>
-                            <!--td class="col-"><!?php echo $row['url_enyca'];?></td-->
-                            <td class="col-"><?php echo $row['status'];?></td>
+                   // Consulta SQL para obtener el total de filas
+                   $sql_total = "SELECT COUNT(*) as total FROM `sensores`";
+                   $resultado_total = $conexion->query($sql_total);
+                   $total_filas = $resultado_total->fetch_assoc()['total'];
 
+                   // Calcular el número total de páginas
+                   $total_paginas = ceil($total_filas / $resultados_por_pagina);
 
-                             <td class="col- text-center">
-                                <a href="./editar_sensor.php?num_serie=<?php echo $row['num_serie'];?>" class="btn btn-warning"><i class="fa-solid fa-user-pen"></i></a>
-                             </td>
-                             <td class="col-text-center">
-                                <a href="./eliminar_sensor.php?num_serie=<?php echo $row['num_serie'];?>" class="btn btn-danger"><i class="fas fa-trash-can"></i></a>
-                            </td>
-             
-                        </tr>
-                             <?php  } ?>
-                    </tbody>
-                </table>
-                </div>
+                   // Consulta SQL para obtener los datos para la página actual
+                   $sql_paginacion = "SELECT sen.num_serie as 'num_serie', sen.id_item as 'id_item', sen.id_tipo_item as 'id_item_sensor', sen.rango as 'rango', sen.output as 'output', sen.cert_enyca as 'cert_enyca', sen.fecha_calibracion as 'fecha_calibracion', sen.url_enyca as 'url_enyca',sen.status as 'status_sensor', sta.id_status as 'id_status', sta.status as 'status', tp.id_tipo_item as 'id_tipo_item', tp.tipo_item as 'tipo_item' FROM sensores sen LEFT JOIN status sta ON sen.status = sta.id_status LEFT JOIN tipo_item tp ON sen.id_tipo_item = tp.id_tipo_item LIMIT $empezar_desde, $resultados_por_pagina";
+                   $resultado_paginacion = $conexion->query($sql_paginacion);
+                ?>
+     <div class="col table-responsive">
+                    <table class="table table-sm table-hover table-bordered">
+                        <thead>
+                            <tr>
+                            <th class="col-">Numero de Serie</th>
+                            <th class="col-">Rango</th>
+                            <th class="col-">Output</th>
+                            <th class="col-">certificado Enyca</th>
+                            <th class="col-">Fecha Calibracion</th>
+                            <th class="col-">URL Enyca</th>
+                            <th class="col-">Status</th>
+
+                            <th class="col-">Editar</th>
+                            <th class="col-">Eliminar</th>                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $resultado_paginacion->fetch_assoc()):?>
+                                <tr class="">
+                                <td class="col-"><?php echo $row['num_serie'];?></td>
+                                <td class="col-"><?php echo $row['rango'];?></td>
+                                <td class="col-"><?php echo $row['output'];?></td>
+                                <td class="col-"><?php echo $row['cert_enyca'];?></td>
+                                <td class="col-"><?php echo $row['fecha_calibracion'];?></td>
+                                <td><a href="<?php echo $row['url_enyca']; ?>" class="link-primary" target="_blank"><?php echo $row ['url_enyca']?></a></td>
+                                <!--td class="col-"><!?php echo $row['url_enyca'];?></td-->
+                                <td class="col-"><?php echo $row['status'];?></td>
+                                    <td class="text-center">
+                                    <a href="./editar_sensor.php?num_serie=<?php echo $row['num_serie'];?>" class="btn btn-warning"><i class="fa-solid fa-user-pen"></i></a>
+
+                                    </td>
+                                    <td class="text-center">
+                                    <a href="./eliminar_sensor.php?num_serie=<?php echo $row['num_serie'];?>" class="btn btn-danger"><i class="fas fa-trash-can"></i></a>
+                                    </td> 
+                                    <?php endwhile; ?>                                   
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>                
+                
+<!-- Paginación -->
+ <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <?php if ($pagina > 1): ?>
+            <li class="page-item">
+                <a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>">Anterior</a>
+            </li>
+        <?php endif; ?>
+        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+            <li class="page-item <?php if ($pagina == $i) echo 'active'; ?>">
+                <a class="page-link" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+            </li>
+        <?php endfor; ?>
+        <?php if ($pagina < $total_paginas): ?>
+            <li class="page-item">
+                <a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>">Siguiente</a>
+            </li>
+        <?php endif; ?>
+    </ul>
+</nav>
+                         
             </div>
         </div>
     </div>

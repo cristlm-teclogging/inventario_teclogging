@@ -3,8 +3,23 @@
 
 require "../../config/conexion.php";
 
-$sql_item1 =  "SELECT * FROM `relacion_kit_item`";
+$sql_item1 = "SELECT * FROM `tipo_item` WHERE tipo_item = 'item'";
 $resultado_item1 = $conexion->query($sql_item1);
+
+if ($resultado_item1->num_rows > 0) {
+    // Obtener el primer resultado de la consulta
+    $row = $resultado_item1->fetch_assoc();
+    $valor_item = $row['id_tipo_item']; // Suponiendo que el valor que necesitas es 'id_tipo_item'
+
+    // Puedes hacer algo con $valor_item aquí si es necesario
+} else {
+    $valor_item = "";
+}
+?>
+ <?php
+
+$sql_kit1 =  "SELECT * FROM `kit`";
+$resultado_kit1 = $conexion->query($sql_kit1);
 
 $sql_select0 =  "SELECT * FROM `marca`";
 $resultado_select0 = $conexion->query($sql_select0);
@@ -25,28 +40,25 @@ $resultado_select2 = $conexion->query($sql_select2);
             <div class="card-body">
               <form action="./agregar_item.php" method="POST" enctype="multipart/form-data" required>
                 <div class="row">
+                    <!--div class="col-4 mt-3">
+                        <div class="form-group">
+                            <label for="id_item" class="form-label">Numero de serie:</label>
+                            <input type="text" class="form-control" name="id_item" id="id_item"required>
+                        </div>
+                    </div-->
                     <div class="col-4 mt-3">
                         <div class="form-group">
-                            <label for="num_serie" class="form-label">Numero de Serie:</label>
-                            <input type="text" class="form-control" name="num_serie" id="num_serie"required>
+                            <label for="id_tipo_item" class="form-label">Tipo de Item:</label>
+                            <input type="text" class="form-control" name="id_tipo_item" id="id_tipo_item" value="<?php echo $valor_item ?>" readonly>
                         </div>
                     </div>
-                    <div class="col-4 mt-3">
-                        <label for="id_item" class="form-label">Id item</label>
-                            <select name="id_item" id="id_item" class="form-select" required>
-                            <option value="" selected disabled>Selecciona tu opción</option>
-                                 <?php while($row = $resultado_item1->fetch_assoc()){ ?>
-                            <option value="<?php echo $row['id_item']; ?>"><?php echo $row['tipo_item']; ?></option>
-                                 <?php } ?>
-                            </select>
-                        </div>
                     <div class="col-4 mt-3">
                         <div class="form-group">
-                            <label for="modelo" class="form-label">Modelo:</label>
-                            <input type="text" class="form-control" name="modelo" id="modelo" required>
+                            <label for="descripcion" class="form-label">Descripcion:</label>
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" required>
                         </div>
                     </div>
-                    </div>
+                </div>
                     <div class="row">
                     <div class="col-4 mt-3">
                         <div class="form-group">
@@ -60,19 +72,14 @@ $resultado_select2 = $conexion->query($sql_select2);
                             <?php } ?>
                         </select>
                         </div>
+                    </div>
+                    <div class="col-4 mt-3">
+                        <div class="form-group">
+                            <label for="modelo" class="form-label">Modelo:</label>
+                            <input type="text" class="form-control" name="modelo" id="modelo" required>
+                        </div>
                     </div>   
-                    <div class="col-4 mt-3">
-                        <div class="form-group">
-                            <label for="descripcion" class="form-label">Descripcion:</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion" required>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-3">
-                        <div class="form-group">
-                            <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" required>
-                        </div>
-                    </div>
+
                     </div>
                 <div class="row">
                 <div class="col-4 mt-3">
@@ -92,7 +99,7 @@ $resultado_select2 = $conexion->query($sql_select2);
                         <div class="form-group">
                             <label for="status" class="form-label">Status</label>
                             <select class="form-select" name="status" id="status" required>
-                        <option value="" selected>Selecciona tu opción</option>
+                        <option value="" selected disabled>Selecciona tu opción</option>
                         <?php 
                          while($row = $resultado_select2->fetch_assoc()){
                         ?>

@@ -3,11 +3,29 @@
 
 require "../../config/conexion.php";
 
+$sql_item1 = "SELECT * FROM `tipo_item` WHERE tipo_item = 'antena'";
+$resultado_item1 = $conexion->query($sql_item1);
+
+if ($resultado_item1->num_rows > 0) {
+    // Obtener el primer resultado de la consulta
+    $row = $resultado_item1->fetch_assoc();
+    $valor_item = $row['id_tipo_item']; // Suponiendo que el valor que necesitas es 'id_item'
+
+    // Puedes hacer algo con $valor_item aquí si es necesario
+} else {
+    $valor_item = "";
+}
+    ?>
+    <?php
+
 $sql_antena1 =  "SELECT * FROM `kit`";
 $resultado_antena1 = $conexion->query($sql_antena1);
 
-$sql_item1 =  "SELECT * FROM `relacion_kit_item`";
+$sql_item1 =  "SELECT * FROM `marca`";
 $resultado_item1 = $conexion->query($sql_item1);
+
+$sql_item2 =  "SELECT * FROM `estado_item`";
+$resultado_item2 = $conexion->query($sql_item2);
 
 $sql_select0 =  "SELECT * FROM `antena`";
 $resultado_select0 = $conexion->query($sql_select0);
@@ -33,80 +51,60 @@ $resultado_select2 = $conexion->query($sql_select2);
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Registro de Kit
+                                        Registro de Antena
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionSensor">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="col-4 mt-2">
-                                                <label for="num_kit" class="form-label">Numero de kit:</label>
-                                                <input type="text" class="form-control" name="num_kit" id="num_kit" required> 
-                                            </div>
-                                            <!--div class="col-4 mt-2">
-                                            <label for="num_kit" class="form-label">Numero de kit</label>
-                                                <select  class="form-select" name="num_kit" id="num_kit" required>
-                                                    <option value="0" selected>Selecciona tu opción</option>  
-                                                         <!-?php 
-                                                    while($row = $resultado_antena1->fetch_assoc()){
-                                                             ?>
-                                                    <option value="<!-?php echo $row['num_kit']; ?>"><!-?php echo $row['num_kit']; ?></option>
-                                                        <!-?php } ?>
-                                                </select>
-                                            </div-->
-                                            <div class="col-4 mt-2">
-                                                <label for="ip" class="form-label">IP:</label>
-                                                <input type="text" class="form-control" name="ip" id="ip" required>
+                                                <label for="id_tipo_item" class="form-label">Tipo de Item:</label>
+                                                <input type="text" class="form-control" name="id_tipo_item" id="id_tipo_item" value="<?php echo $valor_item ?>" readonly>
                                             </div>
                                             <div class="col-4 mt-2">
-                                                <label for="tw" class="form-label">Teamviewer:</label>
-                                                <input type="text" class="form-control" name="tw" id="tw" required>                                             
-                                            </div>
-                                        </div>
-                                        <div class="col-4 mt-2">
-                                                <label for="status" class="form-label">Status</label>
-                                            <select class="form-select" name="status" id="status" required>
-                                                <option value="" selected disabled>Selecciona tu opción</option>
-                                                 <?php 
-                                                 while($row = $resultado_select1->fetch_assoc()){
-                                                 ?>
-                                                <option value="<?php echo $row['id_status']; ?>"><?php echo $row['status']; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Registro Antena
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSensor">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-4 mt-2">
-                                                <label for="id_item" class="form-label">Tipo de item:</label>
-                                                <select name="id_item" id="id_item" class="form-select" required>
-                                                    <option value="" selected disabled>Selecciona el tipo de item</option>
-                                                    <?php
-                                                    while($row = $resultado_item1->fetch_assoc()){ 
-                                                        ?>
-                                                    <option value="<?php echo $row['id_item']; ?>"><?php echo $row['tipo_item']; ?></option>
-                                                    <?php } ?>
-                                                </select>
+                                                <label for="descripcion" class="form-label">Descripcion:</label>
+                                                <input type="text" class="form-control" name="descripcion" id="descripcion" required>                                            
                                             </div>
                                             <div class="col-4 mt-2">
-                                                <label for="num_plato" class="form-label">Numero plato:</label>
-                                                <input type="text" class="form-control" name="num_plato" id="num_plato" required>
-                                            </div>
+                                                <div class="form-group">
+                                                    <label for="marca" class="form-label">Marca:</label>
+                                                        <select name="marca" id="marca" class="form-select" required>
+                                                            <option value="" selected disabled>Selecciona tu opción</option>
+                                                            <?php 
+                                                            while($row = $resultado_item1->fetch_assoc()){
+                                                                ?>
+                                                            <option value="<?php echo $row['id_marca']; ?>"><?php echo $row['nombre_marca']; ?></option>
+                                                             <?php } ?>
+                                                        </select>
+                                                     </div>
+                                                </div>
                                         </div>
                                         <div class="row">
+
+                                            <div class="col-4 mt-2">
+                                                <label for="modelo" class="form-label">Modelo:</label>
+                                                <input type="text" class="form-control" name="modelo" id="modelo" required>
+                                            </div>
+                                            <div class="col-4 mt-2">
+                                                <label for="num_plato" class="form-label">Numero de plato:</label>
+                                                <input type="text" class="form-control" name="num_plato" id="num_plato" required>  
+                                            </div>
                                             <div class="col-4 mt-2">
                                                 <label for="ns_modem" class="form-label">Numero serie del Modem:</label>
                                                 <input type="text" class="form-control" name="ns_modem" id="ns_modem" required>  
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-4 mt-2">
+                                            <label for="status" class="form-label">Estado del item</label>
+                                                 <select class="form-select" name="estado_item" id="estado_item"  required>
+                                                     <option value="" selected>Selecciona tu opción</option>
+                                                    <?php 
+                                                     while($row = $resultado_item2->fetch_assoc()){
+                                                    ?>
+                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado_item']; ?></option>
+                                                    <?php } ?>
+                                                </select>    
                                             </div>
                                             <div class="col-4 mt-2">
                                              <label for="status" class="form-label">Status</label>
@@ -118,7 +116,21 @@ $resultado_select2 = $conexion->query($sql_select2);
                                                 <option value="<?php echo $row['id_status']; ?>"><?php echo $row['status']; ?></option>
                                                     <?php } ?>
                                                 </select>                                           
-                                            </div>                    
+                                             </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Registro Kit
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSensor">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                    
                                     </div>    
                                 </div>
                             </div>

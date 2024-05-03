@@ -25,11 +25,11 @@ $row = $resultado->fetch_assoc();
                         </div>
                         <div class="col-4 mt-3">
                             <label for="fecha_entrada" class="form-label">Fecha Entrada:</label>
-                            <input type="dext" class="form-control" name="fecha_entrada" id="fecha_entrada" value="<?php echo $row['fecha_entrada']?>">
+                            <input type="date" class="form-control" name="fecha_entrada" id="fecha_entrada" value="<?php echo $row['fecha_entrada']?>">
                         </div>
                         <div class="col-4 mt-3">
                             <label for="dias_trabajados" class="form-label">dias_trabajados:</label>
-                            <input type="text" class="form-control" placeholder="Dias trabajados" name="dias_trabajados" id="dias_trabajados" value="<?php echo $row['dias_trabajados']?>">
+                            <input type="number" class="form-control" placeholder="Dias trabajados" name="dias_trabajados" id="dias_trabajados" value="<?php echo $row['dias_trabajados']?>">
                         </div>   
                     </div>
                     <div class="row">

@@ -21,7 +21,7 @@ if($result_num_kit->num_rows> 0){
 }else{
     $sql_insert = "INSERT INTO `kit`(`num_kit`, `id_kit`, `ip`, `tw`, `status`)VALUES('$num_kit', '$id_kit', '$ip', '$tw', '$status')";
     if($conexion->query($sql_insert) === TRUE){
-        header('Location: ../index.php');
+        header('Location: ../../index.php');
     }else{
     echo "No se insertaron los datos";
     }

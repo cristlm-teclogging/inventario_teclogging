@@ -45,6 +45,7 @@
                         <div class="col table-responsive">
                             <table class="table table-sm table-hover table-bordered">
                                 <thead>
+                                <th>ID Item</th>
                                 <th>Numero_Antena</th>
                                 <th>Tipo de Item</th>
                                 <th>Numero_plato</th>
@@ -58,13 +59,14 @@
                      <?php 
                        require "../../config/conexion.php";
 
-                       $sql = "SELECT ant.id_kit as 'id_kit', ant.id_item as 'id_item', ant.num_antena as 'num_antena', ant.num_plato as 'num_plato', ant.ns_modem as 'ns_modem', ant.estado_item as 'estado_item', ant.status as 'status_antena', sta.id_status as 'id_status', sta.status as 'status', ti.id_item as 'id_item', ti.tipo_item FROM antena ant LEFT JOIN status sta ON ant.status = sta.id_status LEFT JOIN tipo_item ti ON ant.id_item = ti.id_item";
+                       $sql = "SELECT ant.id_item as 'id_item', ant.id_tipo_item as 'id_tipo_item', ant.num_antena as 'num_antena', ant.num_plato as 'num_plato', ant.ns_modem as 'ns_modem', ant.estado_item as 'estado_item', ant.status as 'status_antena', sta.id_status as 'id_status', sta.status as 'status', ti.id_tipo_item as 'id_tipo_item', ti.tipo_item as 'tipo_item' FROM antena ant LEFT JOIN status sta ON ant.status = sta.id_status LEFT JOIN tipo_item ti ON ant.id_tipo_item = ti.id_tipo_item";
                        $resultado = $conexion->query($sql);
 
                        while($row = $resultado->fetch_assoc()) { ?>
                                      <tr>
                                          <!--corregir el nombre de las propiedades-->
                                          
+                                         <td><?php echo $row['id_item'];?></td>
                                          <td><?php echo $row['num_antena'];?></td>
                                          <td><?php echo $row['tipo_item'];?></td>
                                          <td><?php echo $row['num_plato'];?></td>

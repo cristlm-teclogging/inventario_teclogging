@@ -21,16 +21,16 @@ $resultado_select2 = $conexion->query($sql_select2);
                     <div class="row">
                         <div class="col-4 mt-3">
                             <label for="id_entrada" class="form-label">Id Salida:</label>
-                            <input type="number" class="form-control" placeholder="Numero de indeificacion" name="id_salida" id="id_salida">
+                            <input type="number" class="form-control" placeholder="Numero de indeificacion" name="id_salida" id="id_salida" required>
                         </div>
                         <div class="col-4 mt-3">
                             <label for="fecha_salida" class="form-label">Fecha Salida:</label>
-                            <input type="datetime-local" class="form-control" name="fecha_salida" id="fecha_salida">
+                            <input type="datetime-local" class="form-control" name="fecha_salida" id="fecha_salida" required>
                         </div>
                         <div class="col-4 mt-3">
                             <label for="ubicacion" class="form-label">Ubicacion</label>
-                             <select class="form-select" name="ubicacion" id="ubicacion">
-                                <option value="0" selected>Selecciona tu opción</option>
+                             <select class="form-select" name="ubicacion" id="ubicacion" required>
+                                <option value="" selected disabled>Selecciona tu opción</option>
                                     <?php 
                                     while($row = $resultado_select1->fetch_assoc()){
                                      ?>
@@ -42,8 +42,8 @@ $resultado_select2 = $conexion->query($sql_select2);
                     <div class="row">
                          <div class="col-4 mt-3">
                             <label for="compañia" class="form-label">Compañia</label>
-                             <select class="form-select" name="compañia" id="compañia">
-                                <option value="0" selected>Selecciona tu opción</option>
+                             <select class="form-select" name="compañia" id="compañia" required>
+                                <option value="" selected disabled>Selecciona tu opción</option>
                                     <?php 
                                     while($row = $resultado_select2->fetch_assoc()){
                                      ?>
@@ -54,26 +54,25 @@ $resultado_select2 = $conexion->query($sql_select2);
 
                         <div class="col-4 mt-3">
                             <label for="num_equipo" class="form-label">Numero de equipo:</label>
-                            <input type="number" class="form-control" placeholder="Agrega el numero de equipo" name="num_equipo" id="num_equipo">
+                            <input type="number" class="form-control" placeholder="Agrega el numero de equipo" name="num_equipo" id="num_equipo" required>
                         </div>
                         <div class="col-4 mt-3">
                             <label for="comentarios" class="form-label">Comentarios:</label>
-                            <input type="text" class="form-control" placeholder="Agrega un Comentario" name="comentarios" id="comentarios">
+                            <input type="text" class="form-control" placeholder="Agrega un Comentario" name="comentarios" id="comentarios" required>
                         </div>                  
                     </div>
                     <div class="row">
                          <div class="col-5 mt-3">
                             <label for="documentos_firmados" class="form-label">Documentos firmados:</label>
-                            <input type="file" class="form-control" name="documentos_firmados" id="documentos_firmados">
+                            <input type="file" class="form-control" name="documentos_firmados" id="documentos_firmados" required>
                         </div>   
                     </div>
                     <div class="d-flex justify-content-center">
-                        <div class="col-2 text-center form-group mt-5">
+                        <div class="col text-center form-group mt-5">
                             <a href="index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                             <button type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button>
                         </div>
                     </div>
-
                     </div>
                 </form>
             </div>

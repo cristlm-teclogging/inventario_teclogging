@@ -26,6 +26,9 @@ require "../../config/conexion.php";
                         <li class="col nav-item">
                         <a class="nav-link active" aria-current="true" href="http://localhost/inventario_tec/modules/compañia">Compañia <i class="fa-solid fa-industry fa-sm"></i></a>
                         </li>
+                        <li class="col nav-item">
+                        <a class="nav-link" href="http://localhost/inventario_tec/modules/entradas">Entradas/Salidas <i class="fa-solid fa-truck-ramp-box fa-sm"></i></a>
+                    </li>
                     </ul>
                 </div>
                 <div class="card-body">

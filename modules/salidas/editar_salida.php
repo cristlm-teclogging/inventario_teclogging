@@ -23,11 +23,11 @@ $row = $resultado->fetch_assoc();
                 <h4 class="fw-bolder">Registro de Salida</h4>
             </div>
             <div class="card-body">
-                <form action="./agregar_salida.php" method="POST" enctype="multipart/form-data">
+                <form action="./modificar_salida.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-4 mt-3">
-                            <label for="id_entrada" class="form-label">Id Salida:</label>
-                            <input type="number" class="form-control" placeholder="Numero de indeificacion" name="id_salida" id="id_salida" value="<?php echo $row['id_salida']?>">
+                            <label for="id_salida" class="form-label">Id Salida:</label>
+                            <input type="number" class="form-control" placeholder="Numero de indeificacion" name="id_salida" id="id_salida" value="<?php echo $row['id_salida']?>" readonly>
                         </div>
                         <div class="col-4 mt-3">
                             <label for="fecha_salida" class="form-label">Fecha Salida:</label>
@@ -74,12 +74,11 @@ $row = $resultado->fetch_assoc();
                         </div>   
                     </div>
                     <div class="d-flex justify-content-center">
-                        <div class="col-2 text-center form-group mt-5">
+                        <div class="col text-center form-group mt-4">
                             <a href="index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                             <button type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button>
                         </div>
                     </div>
-
                     </div>
                 </form>
             </div>
