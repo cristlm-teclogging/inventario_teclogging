@@ -3,12 +3,12 @@
 
 require "../../config/conexion.php";
 
-$num_serie=$_GET['num_serie'];
+$id_item=$_GET['id_item'];
 
 $sql_select1 =  "SELECT * FROM `status`";
 $resultado_select1 = $conexion->query($sql_select1);
 
-$sql = "SELECT * FROM `sensores` WHERE `num_serie` = '$num_serie'";
+$sql = "SELECT * FROM `item` WHERE `id_item` = '$id_item'";
 $resultado = $conexion->query($sql);
 $row = $resultado->fetch_assoc();
 ?>
@@ -23,8 +23,8 @@ $row = $resultado->fetch_assoc();
                 <form action="./modificar_sensor.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-4 mt-3">
-                        <label for="num_serie" class="form-label">Num de serie:</label>
-                        <input type="text" class="form-control" name="num_serie" id="num_serie" value="<?php echo $row['num_serie']?>"readonly>
+                        <label for="id_item" class="form-label">Num de serie:</label>
+                        <input type="text" class="form-control" name="id_item" id="id_item" value="<?php echo $row['id_item']?>"readonly>
                         </div>
 
                     <div class="col-4 mt-3">
@@ -38,8 +38,8 @@ $row = $resultado->fetch_assoc();
                     </div>
                     <div class="row">
                         <div class="col-4 mt-3">
-                        <label for="cert_enyca" class="form-label">Certificado de enyca:</label>
-                        <input type="text" class="form-control" name="cert_enyca" id="cert_enyca" value="<?php echo $row['cert_enyca']?>">
+                        <label for="certificado" class="form-label">Certificado:</label>
+                        <input type="text" class="form-control" name="certificado" id="certificado" value="<?php echo $row['certificado']?>">
                         </div>
 
                     <div class="col-4 mt-3">
@@ -47,8 +47,8 @@ $row = $resultado->fetch_assoc();
                         <input type="date" class="form-control" name="fecha_calibracion" id="fecha_calibracion" value="<?php echo $row['fecha_calibracion']?>">
                     </div>
                     <div class="col-4 mt-3">
-                        <label for="url_enyca" class="form-label">url enyca:</label>
-                        <input type="text" class="form-control" name="url_enyca" id="url_enyca" value="<?php echo $row['url_enyca']?>">
+                        <label for="url_cert" class="form-label">url certificado:</label>
+                        <input type="text" class="form-control" name="url_cert" id="url_cert" value="<?php echo $row['url_cert']?>">
                     </div>
                     </div>
                     <div class="row">

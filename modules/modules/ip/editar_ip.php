@@ -5,7 +5,7 @@ require "../../config/conexion.php";
 
 $id_ip=$_GET['id_ip'];
 
-$sql_select1 =  "SELECT * FROM `antena`";
+$sql_select1 =  "SELECT * FROM `kit`";
 $resultado_select1 = $conexion->query($sql_select1);
 
 $sql = "SELECT * FROM `ip` WHERE `id_ip` = '$id_ip'";

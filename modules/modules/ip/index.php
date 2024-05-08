@@ -1,5 +1,6 @@
 <?php include "header.php"; ?>
-<?php include "../../nav.php"; ?>
+<?php include "../../nav.php"; 
+?>
 
 <div class="container mt-2">
     <div class="row">
@@ -33,46 +34,87 @@
                     Agregar nuevo registro <i class="fa-solid fa-circle-plus"></i>
                     </a>
                     <hr>
-                <div class="col table-responsive">
-                <table class="table table-sm table-hover table-bordered">
-                                <thead class="col-">
-                                <th class="col-">id_ip</th>
-                                <th class="col-">Direccion IP</th>
-                                <th class="col-">Num_kit</th>
+                    <?php 
+                    require "../../config/conexion.php";
 
-                                <th class="col-">Editar</th>
-                                <th class="col-">Eliminar</th>
-                                </thead>
-                                <tbody>
-                     <?php 
-                       require "../../config/conexion.php";
+                    // Configuración de la paginación
+                    $resultados_por_pagina = 5; // Cambia este valor según tus necesidades
+                    if (isset($_GET['pagina'])) {
+                        $pagina = $_GET['pagina'];
+                    }else{
+                        $pagina = 1;
+                    }
 
-                       $sql = "SELECT * FROM `ip`";
-                       $resultado = $conexion->query($sql);
+                    $empezar_desde = ($pagina - 1) * $resultados_por_pagina;
 
-                       while($row = $resultado->fetch_assoc()) { ?>
-                                     <tr>
-                                         <!--corregir el nombre de las propiedades-->
-                                         
-                                         <td class="col-"><?php echo $row['id_ip'];?></td>
-                                         <td class="col-"><?php echo $row['direccion_ip'];?></td>
-                                         <td class="col-"><?php echo $row['num_kit'];?></td>
+                    // Consulta SQL para obtener el total de filas
+                    $sql_total = "SELECT COUNT(*) as total FROM `ip`";
+                    $resultado_total = $conexion->query($sql_total);
+                    $total_filas = $resultado_total->fetch_assoc()['total'];
 
-                                         <!--falta modificar direccion ip-->
+                    // Calcular el número total de páginas
+                    $total_paginas = ceil($total_filas / $resultados_por_pagina);
 
-                                         <td class="col- text-center">
-                                         <a href="./editar_ip.php?id_ip=<?php echo $row['id_ip'];?>" class="btn btn-warning"><i class="fa-solid fa-user-pen"></i></a>
-             
-                                         </td>
-                                         <td class="col-text-center">
-                                         <a href="./eliminar_ip.php?id_ip=<?php echo $row['id_ip'];?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                         </td>
-             
-                                     </tr>
-                                     <?php  } ?>
-                                </tbody>
-                            </table>
-                </div>
+                    // Consulta SQL para obtener los datos para la página actual
+                    $sql_paginacion = "SELECT * FROM `ip` LIMIT $empezar_desde, $resultados_por_pagina";
+                    $resultado_paginacion = $conexion->query($sql_paginacion);
+
+                    ?>
+                    <div class="col table-responsive">
+                        <table class="table table-sm table-hover table-bordered">
+                            <thead>
+                               <tr>
+                                <th>id_ip</th>
+                                <th>direccion ip</th>
+                                <th>num kit</th>
+                                <th>Editar</th>
+                                <th>eliminar</th>
+                               </tr> 
+                            </thead>
+                            <tbody>
+                                <?php while ($row = $resultado_paginacion->fetch_assoc()): ?>
+                                    <tr>
+                                        <td><?php echo $row['id_ip']; ?></td>
+                                        <td><?php echo $row['direccion_ip']; ?></td>
+                                        <td><?php echo $row['num_kit']; ?></td>
+                                        <td class="text-center">
+                                            <a href="./editar_ip.php?id_ip=<?php echo $row['id_ip']; ?>" class="btn btn-warning"><i class="fa-solid fa-user-pen"></i></a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="./eliminar_ip.php?id_ip=<?php echo $row['id_ip']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Paginación -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <?php if ($pagina > 1): ?>
+                                 <li class="page-item">
+                                    <a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>" aria-label="Anterior">
+                                        <span aria-hidden="true">&laquo; Anterior</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+                                 <li class="page-item <?php if ($pagina == $i) echo 'active'; ?>">
+                                    <a class="page-link" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                </li>
+                            <?php endfor; ?>
+                            <?php if ($pagina < $total_paginas): ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">
+                                     <span aria-hidden="true">Siguiente &raquo;</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </nav>
+
+                    
                 </div>
 
             </div>

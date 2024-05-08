@@ -3,7 +3,7 @@
 
 require "../../config/conexion.php";
 //inidcador
-$num_serie=$_GET['num_serie'];
+$id_item = $_GET['id_item'];
 
 $sql_select0 =  "SELECT * FROM `marca`";
 $resultado_select0 = $conexion->query($sql_select0);
@@ -14,7 +14,7 @@ $resultado_select1 = $conexion->query($sql_select1);
 $sql_select2 =  "SELECT * FROM `status`";
 $resultado_select2 = $conexion->query($sql_select2);
 
-$sql = "SELECT * FROM `items` WHERE `num_serie` = '$num_serie'";
+$sql = "SELECT * FROM `item` WHERE `id_item` = '$id_item'";
 $resultado = $conexion->query($sql);
 $row = $resultado->fetch_assoc();
 ?>
@@ -23,34 +23,26 @@ $row = $resultado->fetch_assoc();
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <h4 class="fw-bolder">Registro kit</h4>
+                <h4 class="fw-bolder">Editar kit</h4>
             </div>
             <div class="card-body">
             <form action="./modificar_item.php" method="POST" enctype="multipart/form-data" class="">
                     <div class="row">
                         <div class="col-4 mt-3">
-                            <label for="num_serie" class="form-label">Numero de serie:</label>
-                            <input type="text" class="form-control" name="num_serie" id="num_kit" value="<?php echo $row['num_serie']?>" readonly>          
-                        </div>
-                        <div class="col-4 mt-3">
                             <label for="id_item" class="form-label">Id de Item</label>
                             <input type="text" class="form-control" name="id_item" id="id_item" value="<?php echo $row['id_item']?>" readonly>          
                         </div>
+                            <div class="col-4 mt-3">
+                                <label for="descripcion" class="form-label">Descripcion</label>
+                                <input type="text" class="form-control" name="descripcion" id="descripcion" value="<?php echo $row['descripcion']?>">          
+                            </div>
                         <div class="col-4 mt-3">
-                            <label for="modelo" class="form-label">Modelo:</label>
+                            <label for="desc" class="form-label">Modelo:</label>
                             <input type="text" class="form-control" name="modelo" id="modelo" value="<?php echo $row['modelo']?>">          
                         </div>
 
                     </div>  
                         <div class="row">
-                            <div class="col-4 mt-3">
-                                <label for="descripcion" class="form-label">Descripcion</label>
-                                <input type="text" class="form-control" name="descripcion" id="descripcion" value="<?php echo $row['descripcion']?>">          
-                            </div>
-                            <div class="col-4 mt-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $row['nombre']?>">          
-                            </div>
                             <div class="col-4 mt-3">
                                 <label for="marca" class="form-label">Marca:</label>
                                  <select name="marca" id="marca" class="form-select">

@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="../../public/bootstrap5/bootstrap.min.css">
     <link rel="stylesheet" href="../../public/fontawesome-free-6.5.1-web/css/all.css">
     <link rel="stylesheet" href="../../public/css/estilo.css">
+    <link rel="stylesheet" href="../../public/select2/select2.min.css">
+    <script src="../../public/select2/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 </head>
 <body>
-    
 
- 
+
 </body>
+
 </html>

@@ -4,13 +4,12 @@ require_once('../../config/conexion.php');
 
 $rango = $_POST['rango'];
 $output = $_POST['output'];
-$cert_enyca = $_POST['cert_enyca'];
+$certificado = $_POST['certificado'];
 $fecha_calibracion = $_POST['fecha_calibracion'];
-$url_enyca = $_POST['url_enyca'];
+$url_cert = $_POST['url_cert'];
 $status = $_POST['status'];
-$num_serie = $_POST['num_serie'];
 
-$sql = "UPDATE `sensores` SET `rango`='$rango', `output`='$output', `cert_enyca`='$cert_enyca', `fecha_calibracion`='$fecha_calibracion', `url_enyca`='$url_enyca', `status`='$status' WHERE `num_serie` ='$num_serie'";
+$sql = "UPDATE `item` SET `rango`='$rango', `output`='$output', `certificado`='$certificado', `fecha_calibracion`='$fecha_calibracion', `url_cert`='$url_cert', `status`='$status' WHERE `id_item` ='$id_item'";
 $resultado = $conexion->query($sql);
 
 header("Location: index.php");
