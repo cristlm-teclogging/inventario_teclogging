@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2024 a las 00:55:34
+-- Tiempo de generación: 09-05-2024 a las 01:08:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -142,7 +142,41 @@ CREATE TABLE `ip` (
 --
 
 INSERT INTO `ip` (`id_ip`, `direccion_ip`, `num_kit`) VALUES
-(1, '192.168.0.1', 'Antena 1 ');
+(1, '192.168.0.1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `item`
+--
+
+CREATE TABLE `item` (
+  `id_item` int(11) NOT NULL,
+  `id_tipo_item` varchar(255) NOT NULL,
+  `num_serie` varchar(255) NOT NULL,
+  `estado_item` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `marca` varchar(255) NOT NULL,
+  `modelo` varchar(255) NOT NULL,
+  `rango` varchar(255) NOT NULL,
+  `output` varchar(255) NOT NULL,
+  `certificado` varchar(255) NOT NULL,
+  `fecha_calibracion` date NOT NULL,
+  `url_cert` varchar(255) NOT NULL,
+  `num_plato` varchar(255) NOT NULL,
+  `ns_modem` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `item`
+--
+
+INSERT INTO `item` (`id_item`, `id_tipo_item`, `num_serie`, `estado_item`, `status`, `descripcion`, `marca`, `modelo`, `rango`, `output`, `certificado`, `fecha_calibracion`, `url_cert`, `num_plato`, `ns_modem`) VALUES
+(1, '1', '11112', '1', '1', 'Sensor de Aproximadad', '1', 'HYCV9376', '', '', '', '0000-00-00', '', '', ''),
+(3, '2', '2314', '1', '1', 'Sensor de Aproximadad', '1', 'HYCV9376', '11000', '4-200 MHz', 'Cerfica243675-1', '2024-05-15', 'http://34.41.25.255/', '', ''),
+(4, '3', '12145477', '1', '1', 'Sensor de Aproximadad', '1', 'TGY468', '', '', '', '0000-00-00', '', 'plato 3', 'modem4980325'),
+(5, '3', '2155678', '1', '1', 'Sensor de Aproximada', '1', 'TGY468', '', '', '', '0000-00-00', '', 'plato 3', 'modem5093813');
 
 -- --------------------------------------------------------
 
@@ -167,7 +201,8 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`num_serie`, `id_item`, `id_tipo_item`, `modelo`, `marca`, `descripcion`, `nombre`, `estado_item`, `status`) VALUES
-('4321', '4', 1, 'TSMU1356', '1', 'Sensor de Temperatura', 'Teclog_proximidad', '1', '1');
+('4321', '4', 1, 'TSMU1356', '1', 'Sensor de Temperatura', 'Teclog_proximidad', '1', '1'),
+('2155678', '6', 1, 'TGY468', '1', 'Sensor de Aproximada', 'SenoGomer', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -190,7 +225,8 @@ CREATE TABLE `kit` (
 INSERT INTO `kit` (`num_kit`, `id_kit`, `ip`, `tw`, `status`) VALUES
 ('1', 1, '192.168.0.1', 'IET1346806', '3'),
 ('2', 2, '192.168.0.2', 'IET1346806', '1'),
-('4', 4, '192.168.0.4', 'IET1346806', '3');
+('4', 4, '192.168.0.4', 'IET1346806', '2'),
+('5', 5, '192.168.0.5', 'TUID43578', '1');
 
 -- --------------------------------------------------------
 
@@ -218,21 +254,20 @@ INSERT INTO `marca` (`id_marca`, `nombre_marca`) VALUES
 --
 
 CREATE TABLE `relacion_item_tipo_item` (
-  `id_item` varchar(255) NOT NULL,
+  `id_item` int(11) NOT NULL,
   `id_tipo_item` int(11) NOT NULL,
-  `tipo_item` varchar(255) NOT NULL
+  `num_serie` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `relacion_item_tipo_item`
 --
 
-INSERT INTO `relacion_item_tipo_item` (`id_item`, `id_tipo_item`, `tipo_item`) VALUES
-('3', 2, ''),
-('1', 2, ''),
-('4', 1, ''),
-('4', 2, ''),
-('5', 3, '');
+INSERT INTO `relacion_item_tipo_item` (`id_item`, `id_tipo_item`, `num_serie`) VALUES
+(1, 1, '4321'),
+(2, 1, '11112'),
+(4, 2, '11112'),
+(5, 3, '2155678');
 
 -- --------------------------------------------------------
 
@@ -394,6 +429,12 @@ ALTER TABLE `ip`
   ADD KEY `num_kit` (`num_kit`);
 
 --
+-- Indices de la tabla `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`id_item`);
+
+--
 -- Indices de la tabla `items`
 --
 ALTER TABLE `items`
@@ -410,6 +451,12 @@ ALTER TABLE `kit`
 --
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`id_marca`);
+
+--
+-- Indices de la tabla `relacion_item_tipo_item`
+--
+ALTER TABLE `relacion_item_tipo_item`
+  ADD PRIMARY KEY (`id_item`);
 
 --
 -- Indices de la tabla `relacion_kit_item`
@@ -445,6 +492,18 @@ ALTER TABLE `ubicacion`
 --
 ALTER TABLE `cert_enyca`
   MODIFY `id_enyca` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `item`
+--
+ALTER TABLE `item`
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `relacion_item_tipo_item`
+--
+ALTER TABLE `relacion_item_tipo_item`
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `status`
