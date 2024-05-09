@@ -55,7 +55,7 @@
                    $total_paginas = ceil($total_filas / $resultados_por_pagina);
 
                    // Consulta SQL para obtener los datos para la página actual
-                   $sql_paginacion = "SELECT rki.id_kit as 'id_kit', rki.id_item as 'id_item', rki.tipo_item as 'tipo_item', ti.id_tipo_item as 'id_tipo_item', ti.tipo_item as 'tipo_item' FROM relacion_kit_item rki LEFT JOIN tipo_item ti ON rki.id_item = ti.id_tipo_item LIMIT $empezar_desde, $resultados_por_pagina";
+                   $sql_paginacion = "SELECT rki.id_kit as 'id_kit', rki.id_item as 'id_item',ti.id_tipo_item as 'id_tipo_item', ti.tipo_item as 'tipo_item', rit.num_serie as 'num_serie' FROM relacion_kit_item rki LEFT JOIN tipo_item ti ON rki.id_item = ti.id_tipo_item LEFT JOIN relacion_item_tipo_item rit ON rki.id_item = rit.id_item LIMIT $empezar_desde, $resultados_por_pagina";
                    $resultado_paginacion = $conexion->query($sql_paginacion);
                 ?>
                 
@@ -66,6 +66,7 @@
                                 <th>id_kit</th>
                                 <th>id_item</th>
                                 <th>tipo item</th>
+                                <th>Numero de serie</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -76,6 +77,7 @@
                                     <td><?php echo $row['id_kit'];?></td>
                                     <td><?php echo $row['id_item'];?></td>
                                     <td><?php echo $row['tipo_item'];?></td>
+                                    <td><?php echo $row['num_serie'];?></td>
                                     <td class="text-center">
                                         <a href="./editar_ki.php?id_kit=<?php echo $row['id_kit'];?>" class="btn btn-warning"><i class="fa-solid fa-user-pen"></i></a>
                                     </td>

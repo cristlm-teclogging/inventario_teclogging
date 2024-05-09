@@ -134,6 +134,17 @@ $resultado_select1 = $conexion->query($sql_select1);
                                              </select>                                           
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-4 mt-2">
+                                                <label for="num_plato" class="form-label">Num_plato:</label>
+                                                <input type="text" class="form-control" name="num_plato" id="num_plato" value="0" readonly>    
+                                            </div>
+                                            <div class="col-4 mt-2">
+                                                <label for="ns_modem" class="form-label">ns_modem:</label>
+                                                <input type="text" class="form-control" name="ns_modem" id="ns_modem" value="0" readonly>    
+                                            </div>
+                                            
+                                        </div>
                                         </div>
 
                                     </div>

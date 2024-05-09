@@ -3,12 +3,12 @@
 
 require "../../config/conexion.php";
 
-$id_item=$_GET['id_item'];
+$id_item= $_GET['id_item'];
 
 $sql_select1 =  "SELECT * FROM `status`";
 $resultado_select1 = $conexion->query($sql_select1);
 
-$sql = "SELECT * FROM `item` WHERE `id_item` = '$id_item'";
+$sql = "SELECT * FROM `item` WHERE `id_item` ='$id_item'";
 $resultado = $conexion->query($sql);
 $row = $resultado->fetch_assoc();
 ?>
@@ -23,35 +23,41 @@ $row = $resultado->fetch_assoc();
                 <form action="./modificar_sensor.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-4 mt-3">
-                        <label for="id_item" class="form-label">Num de serie:</label>
+                        <label for="id_item" class="form-label">id_ item:</label>
                         <input type="text" class="form-control" name="id_item" id="id_item" value="<?php echo $row['id_item']?>"readonly>
-                        </div>
+                    </div>
+                    <div class="col-4 mt-3">
+                        <label for="num_serie" class="form-label">Num_serie:</label>
+                        <input type="text" class="form-control" name="num_serie" id="num_serie" value="<?php echo $row['num_serie']?>">
+                    </div>
 
                     <div class="col-4 mt-3">
                         <label for="rango" class="form-label">Rango:</label>
                         <input type="text" class="form-control" name="rango" id="rango" value="<?php echo $row['rango']?>">
                     </div>
+
+                    </div>
+                    <div class="row">
                     <div class="col-4 mt-3">
                         <label for="output" class="form-label">Output:</label>
                         <input type="text" class="form-control" name="output" id="output" value="<?php echo $row['output']?>">
                     </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4 mt-3">
+                    <div class="col-4 mt-3">
                         <label for="certificado" class="form-label">Certificado:</label>
                         <input type="text" class="form-control" name="certificado" id="certificado" value="<?php echo $row['certificado']?>">
-                        </div>
+                    </div>
 
                     <div class="col-4 mt-3">
                         <label for="fecha_calibracion" class="form-label">Fecha Calibracion:</label>
                         <input type="date" class="form-control" name="fecha_calibracion" id="fecha_calibracion" value="<?php echo $row['fecha_calibracion']?>">
                     </div>
-                    <div class="col-4 mt-3">
-                        <label for="url_cert" class="form-label">url certificado:</label>
-                        <input type="text" class="form-control" name="url_cert" id="url_cert" value="<?php echo $row['url_cert']?>">
-                    </div>
+
                     </div>
                     <div class="row">
+                        <div class="col-4 mt-3">
+                            <label for="url_cert" class="form-label">url certificado:</label>
+                            <input type="text" class="form-control" name="url_cert" id="url_cert" value="<?php echo $row['url_cert']?>">
+                        </div>
                         <div class="col-4 mt-3">
                             <label for="status" class="form-label">Status</label>
                             <select class="form-select" name="status" id="status" value="<?php echo $row['status']?>">

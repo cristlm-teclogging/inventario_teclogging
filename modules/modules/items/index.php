@@ -59,7 +59,7 @@
                    $total_paginas = ceil($total_filas / $resultados_por_pagina);
 
                    // Consulta SQL para obtener los datos para la página actual
-                   $sql_paginacion = "SELECT i.id_item as 'id_item',i.descripcion as 'descripcion',i.modelo as 'modelo', ti.tipo_item as 'tipo_item', ma.nombre_marca as 'marca', est.estado_item as 'estado_item', sta.status FROM item i LEFT JOIN tipo_item ti ON i.id_tipo_item = ti.id_tipo_item LEFT JOIN marca ma ON i.marca = ma.id_marca LEFT JOIN estado_item est ON i.estado_item = est.id_estado LEFT JOIN status sta ON i.status = sta.id_status WHERE i.id_tipo_item = '1' LIMIT $empezar_desde, $resultados_por_pagina";
+                   $sql_paginacion = "SELECT i.id_item as 'id_item',i.num_serie as 'num_serie', i.descripcion as 'descripcion',i.modelo as 'modelo', ti.tipo_item as 'tipo_item', ma.nombre_marca as 'marca', est.estado_item as 'estado_item', sta.status FROM item i LEFT JOIN tipo_item ti ON i.id_tipo_item = ti.id_tipo_item LEFT JOIN marca ma ON i.marca = ma.id_marca LEFT JOIN estado_item est ON i.estado_item = est.id_estado LEFT JOIN status sta ON i.status = sta.id_status WHERE i.id_tipo_item = '1' LIMIT $empezar_desde, $resultados_por_pagina";
                    //$sql_paginacion = "SELECT * FROM `item`";
                    $resultado_paginacion = $conexion->query($sql_paginacion);
                 ?> 
@@ -67,7 +67,7 @@
                     <table class="table table-sm table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th>Numero_serie</th>
+                                <th>Numero de serie</th>
                                 <th>Tipo de Item</th>
                                 <th>Descripcion</th>
                                 <th>Marca</th>
@@ -81,7 +81,7 @@
                         <tbody>
                             <?php while ($row = $resultado_paginacion->fetch_assoc()): ?>
                                 <tr class="">
-                                    <td><?php echo $row['id_item'];?></td>
+                                    <td><?php echo $row['num_serie'];?></td>
                                     <td><?php echo $row['tipo_item'];?></td>
                                     <td><?php echo $row['descripcion'];?></td>
                                     <td><?php echo $row['marca'];?></td>

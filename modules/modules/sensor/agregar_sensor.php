@@ -14,12 +14,14 @@ $fecha_calibracion = $_POST['fecha_calibracion'];
 $url_cert = $_POST['url_cert'];
 $estado_item = $_POST['estado_item'];
 $status = $_POST['status'];
+$num_plato = $_POST['num_plato'];
+$ns_modem = $_POST['ns_modem'];
 
 $conexion->begin_transaction();
 
 // Insertar en la tabla 'sensores'
-$sql_sensores = $conexion->prepare("INSERT INTO `item`(`id_tipo_item`, `num_serie`, `descripcion`,  `marca`, `modelo`, `rango`, `output`, `certificado`, `fecha_calibracion`, `url_cert`, `estado_item`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$sql_sensores->bind_param("ssssssssssss",  $id_tipo_item, $num_serie, $descripcion,  $marca, $modelo, $rango, $output, $certificado, $fecha_calibracion, $url_cert, $estado_item, $status);
+$sql_sensores = $conexion->prepare("INSERT INTO `item`(`id_tipo_item`, `num_serie`, `descripcion`,  `marca`, `modelo`, `rango`, `output`, `certificado`, `fecha_calibracion`, `url_cert`, `estado_item`, `status`, `num_plato`, `ns_modem`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$sql_sensores->bind_param("ssssssssssssss",  $id_tipo_item, $num_serie, $descripcion,  $marca, $modelo, $rango, $output, $certificado, $fecha_calibracion, $url_cert, $estado_item, $status, $num_plato, $ns_modem);
 $sql_sensores_executed = $sql_sensores->execute();
 
 // Insertar en la tabla 'relacion_item_tipo_item'
