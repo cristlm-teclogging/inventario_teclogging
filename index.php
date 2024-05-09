@@ -46,7 +46,7 @@
                    require "./config/conexion.php";
 
                    // Configuración de la paginación
-                   $resultados_por_pagina = 3; // Cambia este valor según tus necesidades
+                   $resultados_por_pagina = 5; // Cambia este valor según tus necesidades
                    if (isset($_GET['pagina'])) {
                        $pagina = $_GET['pagina'];
                    }else{
@@ -76,6 +76,7 @@
                                 <th>num kit</th>
                                 <th>status</th>
                                 <th>Editar</th>
+                                <th>Agregar Item</th>
                                 <th>eliminar</th>                                
                             </tr>
                         </thead>
@@ -88,7 +89,9 @@
                                     <td><?php echo $row['status'];?></td>
                                     <td class="text-center">
                                         <a href="./modules/editar_kit.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-warning"> <i class="fa-solid fa-user-pen"></i></a>
-
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="./modules/registrar_items.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-success"> <i class="fa-solid fa-plus"></i>
                                     </td>
                                     <td class="text-center">
                                         <a href="./modules/eliminar_kit.php?num_kit=<?php echo $row['num_kit'];?>" class="btn btn-danger"> <i class="fas fa-trash-can"></i></a>
