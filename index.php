@@ -71,9 +71,9 @@
                     <table class="table table-sm table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th>id_ip</th>
+                                <th>Numero de Kit</th>
                                 <th>direccion ip</th>
-                                <th>num kit</th>
+                                <th>Teamviewer</th>
                                 <th>status</th>
                                 <th>Editar</th>
                                 <th>Agregar Item</th>
