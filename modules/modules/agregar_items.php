@@ -4,19 +4,21 @@ error_reporting(1);
 require('../config/conexion.php');
 
 // Variables de la tabla relacion_kit_item
+$num_kit = $_GET['num_kit'];
+
 $id_kit = $_POST['id_kit'];
 $id_item = $_POST['id_item'];
 $tipo_item = $_POST['tipo_item'];
 
 $sql = "INSERT INTO `relacion_kit_item`(`id_kit`, `id_item`,`tipo_item`)VALUES('$id_kit', '$id_item', '$tipo_item')";
-
 $resultado = $conexion -> query($sql);
 
 if($resultado){
-    header('Location: registrar_items.php');
+    header("Location: registrar_items.php?num_kit=$num_kit");
 }else{
     echo "No se insertaron los datos";
 }
+
 //consultas para verificar si los datos exiten y no
 /*$sql_id_kit ="SELECT * FROM `relacion_kit_item` WHERE `id_kit` = '$id_kit'";
 $result_id_kit = $conexion->query($sql_id_kit);
