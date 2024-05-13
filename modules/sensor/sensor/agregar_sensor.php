@@ -1,27 +1,32 @@
 <?php
 require_once('../../config/conexion.php');
 //Variables para validar los datos de la tabla
-$num_serie = $_POST['num_serie'];
-$id_item = $_POST['id_item'];
+//$id_item = $_POST['id_item'];
 $id_tipo_item = $_POST['id_tipo_item'];
+$descripcion = $_POST['descripcion'];
+$num_serie = $_POST['num_serie'];
+$marca = $_POST['marca'];
+$modelo = $_POST['modelo'];
 $rango = $_POST['rango'];
 $output = $_POST['output'];
-$cert_enyca = $_POST['cert_enyca'];
+$certificado = $_POST['certificado'];
 $fecha_calibracion = $_POST['fecha_calibracion'];
-$url_enyca = $_POST['url_enyca'];
+$url_cert = $_POST['url_cert'];
 $estado_item = $_POST['estado_item'];
 $status = $_POST['status'];
+$num_plato = $_POST['num_plato'];
+$ns_modem = $_POST['ns_modem'];
 
 $conexion->begin_transaction();
 
 // Insertar en la tabla 'sensores'
-$sql_sensores = $conexion->prepare("INSERT INTO `sensores`(`num_serie`, `id_item`, `id_tipo_item`, `rango`, `output`, `cert_enyca`, `fecha_calibracion`, `url_enyca`, `estado_item`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$sql_sensores->bind_param("ssssssssss", $num_serie, $id_item, $id_tipo_item, $rango, $output, $cert_enyca, $fecha_calibracion, $url_enyca, $estado_item, $status);
+$sql_sensores = $conexion->prepare("INSERT INTO `item`(`id_tipo_item`, `num_serie`, `descripcion`,  `marca`, `modelo`, `rango`, `output`, `certificado`, `fecha_calibracion`, `url_cert`, `estado_item`, `status`, `num_plato`, `ns_modem`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$sql_sensores->bind_param("ssssssssssssss",  $id_tipo_item, $num_serie, $descripcion,  $marca, $modelo, $rango, $output, $certificado, $fecha_calibracion, $url_cert, $estado_item, $status, $num_plato, $ns_modem);
 $sql_sensores_executed = $sql_sensores->execute();
 
 // Insertar en la tabla 'relacion_item_tipo_item'
-$sql_rti = $conexion->prepare("INSERT INTO `relacion_item_tipo_item`(`id_item`, `id_tipo_item`) VALUES (?, ?)");
-$sql_rti->bind_param("ss", $id_item, $id_tipo_item);
+$sql_rti = $conexion->prepare("INSERT INTO `relacion_item_tipo_item`(`id_tipo_item`, `num_serie`, `descripcion`) VALUES (?, ?, ?)");
+$sql_rti->bind_param("sss", $id_tipo_item, $num_serie, $descripcion);
 $sql_rti_executed = $sql_rti->execute();
 
 if ($sql_sensores_executed && $sql_rti_executed) {

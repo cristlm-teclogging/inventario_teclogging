@@ -2,15 +2,19 @@
 error_reporting(1);
 require_once('../../config/conexion.php');
 
+$num_serie = $_POST['num_serie'];
+$descripcion = $_POST['descripcion'];
+$marca = $_POST['marca'];
+$modelo = $_POST['modelo'];
 $rango = $_POST['rango'];
 $output = $_POST['output'];
-$cert_enyca = $_POST['cert_enyca'];
+$certificado = $_POST['certificado'];
 $fecha_calibracion = $_POST['fecha_calibracion'];
-$url_enyca = $_POST['url_enyca'];
+$url_cert = $_POST['url_cert'];
 $status = $_POST['status'];
-$num_serie = $_POST['num_serie'];
+$id_item = $_POST['id_item'];
 
-$sql = "UPDATE `sensores` SET `rango`='$rango', `output`='$output', `cert_enyca`='$cert_enyca', `fecha_calibracion`='$fecha_calibracion', `url_enyca`='$url_enyca', `status`='$status' WHERE `num_serie` ='$num_serie'";
+$sql = "UPDATE `item` SET `num_serie`='$num_serie', `descripcion`='$descripcion', `marca`='$marca', `modelo`='$modelo',`rango`='$rango', `output`='$output', `certificado`='$certificado', `fecha_calibracion`='$fecha_calibracion', `url_cert`='$url_cert', `status`='$status' WHERE `id_item` ='$id_item'";
 $resultado = $conexion->query($sql);
 
 header("Location: index.php");

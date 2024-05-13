@@ -18,8 +18,8 @@ if ($resultado_item1->num_rows > 0) {
 ?>
  <?php
 
-$sql_item2 =  "SELECT * FROM `marca`";
-$resultado_item2 = $conexion->query($sql_item2);
+$sql_item0 =  "SELECT * FROM `marca`";
+$resultado_item0 = $conexion->query($sql_item0);
 
 $sql_item3 =  "SELECT * FROM `relacion_kit_item`";
 $resultado_item3 = $conexion->query($sql_item3);
@@ -54,23 +54,42 @@ $resultado_select1 = $conexion->query($sql_select1);
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionSensor">
                                     <div class="accordion-body">
                                         <div class="row">
-                                            <div class="col-4 mt-2">
-                                                <label for="num_serie" class="form-label">Numero de Serie:</label>
-                                                <input type="text" class="form-control" name="num_serie" id="num_serie"required>
-                                            </div>
-                                            <div class="col-4 mt-2">
-                                                <label for="id_item" class="form-label">Id item:</label>
-                                                <input type="text" class="form-control" name="id_item" id="id_item"required>
-                                            </div>
+
                                             <div class="col-4 mt-2">
                                                 <label for="id_tipo_item" class="form-label">Tipo de Item:</label>
                                                 <input type="text" class="form-control" name="id_tipo_item" id="id_tipo_item" value="<?php echo $valor_item ?>" readonly>
                                             </div>
                                             <div class="col-4 mt-2">
+                                                <label for="num_serie" class="form-label">Numero de Serie:</label>
+                                                <input type="text" class="form-control" name="num_serie" id="num_serie"required>
+                                            </div>
+                                            <div class="col-4 mt-2">
+                                                <label for="descripcion" class="form-label">Descripcion:</label>
+                                                <input type="text" class="form-control" name="descripcion" id="descripcion" required>                                            
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4 mt-2">
+                                                <div class="form-group">
+                                                    <label for="marca" class="form-label">Marca:</label>
+                                                        <select name="marca" id="marca" class="form-select" required>
+                                                            <option value="" selected disabled>Selecciona tu opción</option>
+                                                            <?php 
+                                                            while($row = $resultado_item0->fetch_assoc()){
+                                                                ?>
+                                                            <option value="<?php echo $row['id_marca']; ?>"><?php echo $row['nombre_marca']; ?></option>
+                                                             <?php } ?>
+                                                        </select>
+                                                     </div>
+                                                </div>
+                                            <div class="col-4 mt-2">
+                                                <label for="modelo" class="form-label">Modelo:</label>
+                                                <input type="text" class="form-control" name="modelo" id="modelo" required>                                            
+                                            </div>
+                                            <div class="col-4 mt-2">
                                                 <label for="rango" class="form-label">Rango:</label>
                                                 <input type="text" class="form-control" name="rango" id="rango" required>                                            
                                             </div>
-
                                         </div>
                                         <div class="row">
                                             <div class="col-4 mt-2">
@@ -78,8 +97,8 @@ $resultado_select1 = $conexion->query($sql_select1);
                                                 <input type="text" class="form-control" name="output" id="output" required>                                                                                           
                                             </div>
                                             <div class="col-4 mt-2">
-                                                <label for="cert_enyca" class="form-label">Certificado de enyca:</label>
-                                                <input type="text" class="form-control" name="cert_enyca" id="cert_enyca" required>                                             
+                                                <label for="certificado" class="form-label">Certificado:</label>
+                                                <input type="text" class="form-control" name="certificado" id="certificado" required>                                             
                                             </div>
                                             <div class="col-4 mt-2">
                                                 <label for="fecha_calibracion" class="form-label">Fecha Calibracion:</label>
@@ -89,8 +108,8 @@ $resultado_select1 = $conexion->query($sql_select1);
                                         </div>
                                         <div class="row">
                                             <div class="col-4 mt-2">
-                                                <label for="url_enyca" class="form-label">url enyca:</label>
-                                                <input type="url" class="form-control" name="url_enyca" id="url_enyca" required>                                                                                            
+                                                <label for="url_cerf" class="form-label">url certificado:</label>
+                                                <input type="url" class="form-control" name="url_cert" id="url_cert" required>                                                                                            
                                             </div> 
                                             <div class="col-4 mt-2">
                                                 <label for="estado_item" class="form-label">Estado Item</label>
@@ -114,6 +133,17 @@ $resultado_select1 = $conexion->query($sql_select1);
                                                 <?php } ?>
                                              </select>                                           
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4 mt-2">
+                                                <label for="num_plato" class="form-label">Num_plato:</label>
+                                                <input type="text" class="form-control" name="num_plato" id="num_plato" value="0" readonly>    
+                                            </div>
+                                            <div class="col-4 mt-2">
+                                                <label for="ns_modem" class="form-label">ns_modem:</label>
+                                                <input type="text" class="form-control" name="ns_modem" id="ns_modem" value="0" readonly>    
+                                            </div>
+                                            
                                         </div>
                                         </div>
 
