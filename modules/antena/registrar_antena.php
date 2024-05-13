@@ -27,14 +27,14 @@ $resultado_item1 = $conexion->query($sql_item1);
 $sql_item2 =  "SELECT * FROM `estado_item`";
 $resultado_item2 = $conexion->query($sql_item2);
 
-$sql_select0 =  "SELECT * FROM `antena`";
-$resultado_select0 = $conexion->query($sql_select0);
-
-$sql_select1 =  "SELECT * FROM `status`";
+$sql_select1 =  "SELECT * FROM `marca`";
 $resultado_select1 = $conexion->query($sql_select1);
 
 $sql_select2 =  "SELECT * FROM `status`";
 $resultado_select2 = $conexion->query($sql_select2);
+
+$sql_select3 =  "SELECT * FROM `estado_item`";
+$resultado_select3 = $conexion->query($sql_select3);
 ?>
 
 <div class="container mt-4">
@@ -61,25 +61,30 @@ $resultado_select2 = $conexion->query($sql_select2);
                                                 <label for="id_tipo_item" class="form-label">Tipo de Item:</label>
                                                 <input type="text" class="form-control" name="id_tipo_item" id="id_tipo_item" value="<?php echo $valor_item ?>" readonly>
                                             </div>
+                                        <div class="col-4 mt-2">
+                                                <label for="num_serie" class="form-label">Numero de Serie:</label>
+                                                <input type="text" class="form-control" name="num_serie" id="num_serie" required>
+                                            </div>
                                             <div class="col-4 mt-2">
                                                 <label for="descripcion" class="form-label">Descripcion:</label>
                                                 <input type="text" class="form-control" name="descripcion" id="descripcion" required>                                            
                                             </div>
-                                            <div class="col-4 mt-2">
-                                                <div class="form-group">
-                                                    <label for="marca" class="form-label">Marca:</label>
-                                                        <select name="marca" id="marca" class="form-select" required>
-                                                            <option value="" selected disabled>Selecciona tu opción</option>
-                                                            <?php 
-                                                            while($row = $resultado_item1->fetch_assoc()){
-                                                                ?>
-                                                            <option value="<?php echo $row['id_marca']; ?>"><?php echo $row['nombre_marca']; ?></option>
-                                                             <?php } ?>
-                                                        </select>
-                                                     </div>
-                                                </div>
+
                                         </div>
                                         <div class="row">
+                                            <div class="col-4 mt-2">
+                                                <div class="form-group">
+                                                <label for="marca" class="form-label">Marca</label>
+                                                     <select class="form-select" name="marca" id="marca">
+                                                             <option value="0" selected>Selecciona tu opción</option>
+                                                                <?php 
+                                                                    while($row_select1 = $resultado_select1->fetch_assoc()){
+                                                                  ?>
+                                                             <option value="<?php echo $row_select1['id_marca']; ?>"><?php echo $row_select1['nombre_marca']; ?></option>
+                                                             <?php } ?>
+                                                     </select>
+                                                     </div>
+                                                </div>
 
                                             <div class="col-4 mt-2">
                                                 <label for="modelo" class="form-label">Modelo:</label>
@@ -89,33 +94,34 @@ $resultado_select2 = $conexion->query($sql_select2);
                                                 <label for="num_plato" class="form-label">Numero de plato:</label>
                                                 <input type="text" class="form-control" name="num_plato" id="num_plato" required>  
                                             </div>
+
+                                        </div>
+                                        <div class="row">
                                             <div class="col-4 mt-2">
                                                 <label for="ns_modem" class="form-label">Numero serie del Modem:</label>
                                                 <input type="text" class="form-control" name="ns_modem" id="ns_modem" required>  
                                             </div>
-                                        </div>
-                                        <div class="row">
                                         <div class="col-4 mt-2">
                                             <label for="status" class="form-label">Estado del item</label>
-                                                 <select class="form-select" name="estado_item" id="estado_item"  required>
-                                                     <option value="" selected>Selecciona tu opción</option>
-                                                    <?php 
-                                                     while($row = $resultado_item2->fetch_assoc()){
-                                                    ?>
-                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado_item']; ?></option>
-                                                    <?php } ?>
+                                                <select class="form-select" name="marca" id="marca">
+                                                    <option value="0" selected>Selecciona tu opción</option>
+                                                        <?php 
+                                                        while($row_select = $resultado_select2->fetch_assoc()){
+                                                        ?>
+                                                    <option value="<?php echo $row_select2['id_marca']; ?>"><?php echo $row_select2['nombre_marca']; ?></option>
+                                                        <?php } ?>
                                                 </select>    
                                             </div>
                                             <div class="col-4 mt-2">
                                              <label for="status" class="form-label">Status</label>
-                                                 <select class="form-select" name="status" id="status"  required>
-                                                     <option value="" selected>Selecciona tu opción</option>
-                                                    <?php 
-                                                     while($row = $resultado_select2->fetch_assoc()){
-                                                    ?>
-                                                <option value="<?php echo $row['id_status']; ?>"><?php echo $row['status']; ?></option>
-                                                    <?php } ?>
-                                                </select>                                           
+                                                <select class="form-select" name="marca" id="marca">
+                                                     <option value="0" selected>Selecciona tu opción</option>
+                                                            <?php 
+                                                        while($row_select1 = $resultado_select1->fetch_assoc()){
+                                                            ?>
+                                                     <option value="<?php echo $row_select1['id_marca']; ?>"><?php echo $row_select1['nombre_marca']; ?></option>
+                                                            <?php } ?>
+                                                </select>                                         
                                              </div>                                            
                                         </div>
                                     </div>

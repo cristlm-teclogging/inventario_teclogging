@@ -5,6 +5,7 @@ require('../../config/conexion.php');
 //$id_item = $_POST['id_item'];
 $id_tipo_item = $_POST['id_tipo_item'];
 $descripcion = $_POST['descripcion'];
+$num_serie = $_POST['num_serie'];
 $marca = $_POST['marca'];
 $modelo = $_POST['modelo'];
 $num_plato = $_POST['num_plato'];
@@ -13,13 +14,13 @@ $estado_item = $_POST['estado_item'];
 $status = $_POST['status'];
 
 // Insertar en la tabla 'Items'
-$sql_antena = $conexion->prepare("INSERT INTO `item`(`id_tipo_item`, `descripcion`, `marca`, `modelo`, `num_plato`, `ns_modem`, `estado_item`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-$sql_antena->bind_param("ssssssss", $id_tipo_item, $descripcion, $marca, $modelo, $num_plato, $ns_modem, $estado_item, $status);
+$sql_antena = $conexion->prepare("INSERT INTO `item`(`id_tipo_item`, `descripcion`, `num_serie`, `marca`, `modelo`, `num_plato`, `ns_modem`, `estado_item`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$sql_antena->bind_param("sssssssss", $id_tipo_item, $descripcion, $num_serie, $marca, $modelo, $num_plato, $ns_modem, $estado_item, $status);
 $sql_antena_executed = $sql_antena->execute();
 
 // Insertar en la tabla 'relacion_item_tipo_item'
-$sql_rti = $conexion->prepare("INSERT INTO `relacion_item_tipo_item`(`id_tipo_item`) VALUES (?)");
-$sql_rti->bind_param("s", $id_tipo_item);
+$sql_rti = $conexion->prepare("INSERT INTO `relacion_item_tipo_item`(`id_tipo_item`, `num_serie`, `descripcion`) VALUES ( ?, ?, ?)");
+$sql_rti->bind_param("sss", $id_tipo_item, $num_serie, $descripcion);
 $sql_rti_executed = $sql_rti->execute();
 
 if ($sql_antena_executed && $sql_rti_executed) {
