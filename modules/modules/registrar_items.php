@@ -86,7 +86,7 @@ $resultado_item2 = $conexion->query($sql_item2);
                                              <td class=""><?php echo $row['num_serie'];?></td>
                                              <td class=""><?php echo $row['tipo_item'];?></td>
                                               <td class="col-text-center">
-                                                 <a href="./eliminar_items.php?id_item=<?php echo $row['id_item'];?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                              <a href="./eliminar_items.php?id_item=<?php echo $row['id_item'];?>&num_kit=<?php echo $num_kit;?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                                             </td>
                                          </tr>
                                         <?php  } ?>
