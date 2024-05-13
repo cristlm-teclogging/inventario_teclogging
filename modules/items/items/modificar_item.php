@@ -3,17 +3,16 @@ error_reporting(1);
 
 require_once('../../config/conexion.php');
 
-$id_item = $_POST['id_item'];
+$num_serie = $_POST ['num_serie'];
+$descripcion = $_POST['descripcion'];
 $modelo = $_POST['modelo'];
 $marca = $_POST['marca'];
-$descripcion = $_POST['descripcion'];
-$nombre =$_POST['nombre'];
 $estado_item =$_POST['estado_item'];
 $status = $_POST['status'];
-$num_serie = $_POST['num_serie'];
+$fecha_calibracion = $_POST['fecha_calibracion'];
+$id_item = $_POST ['id_item'];
 
-
-$sql = "UPDATE`items` SET `id_item`='$id_item', `modelo`='$modelo',`marca`='$marca', `descripcion`='$descripcion', `nombre`='$nombre', `estado_item`='$estado_item',`status`='$status' WHERE `num_serie` ='$num_serie'";
+$sql = "UPDATE`item` SET `num_serie`='$num_serie',`descripcion`='$descripcion', `modelo`='$modelo',`marca`='$marca', `estado_item`='$estado_item',`status`='$status', `fecha_calibracion`='$fecha_calibracion' WHERE `id_item` ='$id_item'";
 $resultado = $conexion->query($sql);
 
 header("Location: index.php");

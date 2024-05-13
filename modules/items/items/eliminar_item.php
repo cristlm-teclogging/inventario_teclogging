@@ -1,10 +1,10 @@
 <?php
 
 require_once('../../config/conexion.php');
-$num_serie=$_GET['num_serie'];
+$id_item=$_GET['id_item'];
 
 //eliminar registro de la tabla
-$sql="DELETE FROM `items` WHERE num_serie ='".$num_serie."'";
+$sql="DELETE FROM `item` WHERE id_item ='".$id_item."'";
 $resultado=mysqli_query($conexion,$sql);
 
 

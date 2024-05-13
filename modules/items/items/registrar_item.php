@@ -42,31 +42,24 @@ $resultado_select2 = $conexion->query($sql_select2);
                 <div class="row">
                     <div class="col-4 mt-3">
                         <div class="form-group">
-                            <label for="num_serie" class="form-label">Numero de Serie:</label>
-                            <input type="text" class="form-control" name="num_serie" id="num_serie"required>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-3">
-                        <div class="form-group">
-                            <label for="id_item" class="form-label">ID item:</label>
-                            <input type="text" class="form-control" name="id_item" id="id_item"required>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-3">
-                        <div class="form-group">
                             <label for="id_tipo_item" class="form-label">Tipo de Item:</label>
                             <input type="text" class="form-control" name="id_tipo_item" id="id_tipo_item" value="<?php echo $valor_item ?>" readonly>
                         </div>
                     </div>
-                </div>
-                    
-                    <div class="row">
                     <div class="col-4 mt-3">
                         <div class="form-group">
-                            <label for="modelo" class="form-label">Modelo:</label>
-                            <input type="text" class="form-control" name="modelo" id="modelo" required>
+                            <label for="num_serie" class="form-label">Numero de Serie:</label>
+                            <input type="text" class="form-control" name="num_serie" id="num_serie" require>
                         </div>
                     </div>
+                    <div class="col-4 mt-3">
+                        <div class="form-group">
+                            <label for="descripcion" class="form-label">Descripcion:</label>
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" required>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
                     <div class="col-4 mt-3">
                         <div class="form-group">
                             <label for="marca" class="form-label">Marca:</label>
@@ -79,76 +72,50 @@ $resultado_select2 = $conexion->query($sql_select2);
                             <?php } ?>
                         </select>
                         </div>
+                    </div>
+                    <div class="col-4 mt-3">
+                        <div class="form-group">
+                            <label for="modelo" class="form-label">Modelo:</label>
+                            <input type="text" class="form-control" name="modelo" id="modelo" required>
+                        </div>
                     </div>   
-                    <div class="col-4 mt-3">
-                        <div class="form-group">
-                            <label for="descripcion" class="form-label">Descripcion:</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mt-2">
+                          <label for="estado_item" class="form-label">Estado Item</label>
+                            <select class="form-select" name="estado_item" id="estado_item"  required>
+                                <option value="" selected disabled>Selecciona tu opción</option>
+                                <?php 
+                                while($row = $resultado_select1->fetch_assoc()){
+                                ?>
+                                <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado_item']; ?></option>
+                                 <?php } ?>
+                            </select>                                                                   
                         </div>
-                    </div>
-                    </div>
-                <div class="row">
-                <div class="col-4 mt-3">
-                        <div class="form-group">
-                            <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" required>
+                        <div class="col-4 mt-2">
+                                 <label for="status" class="form-label">Status</label>
+                                 <select class="form-select" name="status" id="status"  required>
+                                    <option value="" selected disabled>Selecciona tu opción</option>
+                                        <?php 
+                                    while($row = $resultado_select2->fetch_assoc()){
+                                        ?>
+                                     <option value="<?php echo $row['id_status']; ?>"><?php echo $row['status']; ?></option>
+                                      <?php } ?>
+                                </select>                                           
+                            </div>                                                 
                         </div>
-                    </div>
-                <div class="col-4 mt-3">
-                        <div class="form-group">
-                         <label for="estado_item" class="form-label">Estado del item</label>
-                            <select class="form-select" name="estado_item" id="estado_item" required>
-                             <option value="" selected disabled>Selecciona tu opción</option>
-                             <?php 
-                              while($row = $resultado_select1->fetch_assoc()){
-                             ?>
-                            <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado_item']; ?></option>
-                            <?php } ?>
-                            </select>            
-                        </div>                  
-                    </div>
-                    <div class="col-4 mt-3">
-                        <div class="form-group">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select" name="status" id="status" required>
-                        <option value="" selected disabled>Selecciona tu opción</option>
-                        <?php 
-                         while($row = $resultado_select2->fetch_assoc()){
-                        ?>
-                        <option value="<?php echo $row['id_status']; ?>"><?php echo $row['status']; ?></option>
-                         <?php } ?>
-                        </select>
-                        <!--div class="col mt-2">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Status</button>
-                        </div>                            
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                 <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                    
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                 </div>
-                                </div>
-                            </div-->
-                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
                     <div class="col text-center fom-group mt-4">
                         <a href="index.php" class="btn btn-secondary">Volver <i class="fa-solid fa-rotate-left fa-lg"></i></a>
                         <button  type="submit" class="btn btn-primary">Enviar <i class="fa-solid fa-check fa-lg"></i></button>                        
                     </div>
+                    </div>
+                    </div>
+
                 </div>
+
+
                 </form>
 
             </div>
