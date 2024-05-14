@@ -3,6 +3,9 @@
 
 require "../../config/conexion.php";
 
+$sql_kit1 =  "SELECT * FROM `kit`";
+$resultado_kit1 = $conexion->query($sql_kit1);
+
 $sql_select1 =  "SELECT * FROM `ubicacion`";
 $resultado_select1 = $conexion->query($sql_select1);
 
@@ -24,6 +27,20 @@ $resultado_select2 = $conexion->query($sql_select2);
                             <input type="number" class="form-control" placeholder="Numero de indeificacion" name="id_salida" id="id_salida" required>
                         </div>
                         <div class="col-4 mt-3">
+                            <label for="num_kit" class="form-label">Numero de kit</label>
+                             <select class="form-select" name="num_kit" id="num_kit" required>
+                                <option value="" selected disabled>Selecciona tu opción</option>
+                                    <?php 
+                                    while($row = $resultado_kit1->fetch_assoc()){
+                                     ?>
+                                <option value="<?php echo $row['id_kit']; ?>"><?php echo $row['id_kit']; ?></option>
+                                 <?php } ?>
+                            </select>            
+                        </div>
+
+                        </div>
+                        <div class="row">
+                        <div class="col-4 mt-3">
                             <label for="fecha_salida" class="form-label">Fecha Salida:</label>
                             <input type="datetime-local" class="form-control" name="fecha_salida" id="fecha_salida" required>
                         </div>
@@ -38,7 +55,8 @@ $resultado_select2 = $conexion->query($sql_select2);
                                  <?php } ?>
                             </select>            
                         </div>
-                    </div>
+
+                        </div>
                     <div class="row">
                          <div class="col-4 mt-3">
                             <label for="compañia" class="form-label">Compañia</label>
