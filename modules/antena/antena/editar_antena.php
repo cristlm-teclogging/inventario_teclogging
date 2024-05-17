@@ -8,7 +8,7 @@ $num_antena=$_GET['num_antena'];
 $sql_select1 =  "SELECT * FROM `status`";
 $resultado_select1 = $conexion->query($sql_select1);
 
-$sql = "SELECT * FROM `antena` WHERE `num_antena` = '$num_antena'";
+$sql = "SELECT * FROM `item` WHERE `id_item` = '$id_item'";
 $resultado = $conexion->query($sql);
 $row = $resultado->fetch_assoc();
 
@@ -25,6 +25,8 @@ $resultado_item1 = $conexion->query($sql_item1);
             <div class="card-body">
                 <form action="./modificar_antena.php" method="POST" enctype="multipart/form-data" class="">
                     <div class="row">
+                    <input type="hidden" name="id_item" value="<?php echo $row['id_item']; ?>">
+                        <div class="col-4 mt-3">
                         <div class="col-4 mt-3">
                             <label for="num_antena" class="form-label">Numero de Antena:</label>
                             <input type="text" class="form-control" name="num_antena" id="num_antena" value="<?php echo $row['num_antena']?>" readonly>                    
