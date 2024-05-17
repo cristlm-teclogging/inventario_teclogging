@@ -40,6 +40,8 @@ require "../../config/conexion.php";
                             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/entradas/registro_entrada.php"> <i class="fa-solid fa-truck-arrow-right fa-sm"></i> Registrar Nueva Entrada</a></li>
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/entradas/index.php"> <i class="fa-solid fa-clipboard fa-sm"></i>  Vista de Entradas</a></li>
+                                <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_ki.php"> <i class="fa-solid fa-boxes-packing fa-sm"></i> Encargos salidas</a></li>
+                                <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_kit.php"> <i class="fa-solid fa-boxes-stacked fa-sm"></i> Encargos KIT's</a></li>
                             </ul>
                         </div>
                     </div>
@@ -49,6 +51,7 @@ require "../../config/conexion.php";
                      <thead class="col-">
                         <th class="col-">ID salida</th>
                         <th class="col-">Fecha salida</th>
+                        <th class="col-">numero de kit</th>
                         <th class="col-">Ubicacion</th>
                         <th class="col-">Compañia</th>
                         <th class="col-">Numero de equipo</th>
@@ -62,7 +65,7 @@ require "../../config/conexion.php";
                      <?php 
                        require "../../config/conexion.php";
 
-                       $sql = "SELECT sal.id_salida as 'id_salida', sal.fecha_salida as 'fecha_salida', sal.ubicacion as 'ubicacion_salida', sal.compañia as 'compañia_salida', sal.num_equipo as 'num_equipo', sal.comentarios as'comentarios', sal.documentos_firmados as 'documentos_firmados', ub.id_ubicacion as 'id_ubicacion', ub.ubicacion as 'ubicacion', com.id_compañia as 'id_compañia', com.nombre_compañia as 'compañia' FROM salida sal LEFT JOIN ubicacion ub ON sal.ubicacion = ub.id_ubicacion LEFT JOIN compañia com ON sal.compañia = com.id_compañia;";
+                       $sql = "SELECT sal.id_salida as 'id_salida',  sal.num_kit as 'num_kit', sal.id_item as 'id_item', sal.fecha_salida as 'fecha_salida', sal.ubicacion as 'ubicacion_salida', sal.compañia as 'compañia_salida', sal.num_equipo as 'num_equipo', sal.comentarios as'comentarios', sal.documentos_firmados as 'documentos_firmados', ub.id_ubicacion as 'id_ubicacion', ub.ubicacion as 'ubicacion', com.id_compañia as 'id_compañia', com.nombre_compañia as 'compañia' FROM salida sal LEFT JOIN ubicacion ub ON sal.ubicacion = ub.id_ubicacion LEFT JOIN compañia com ON sal.compañia = com.id_compañia;";
                        $resultado = $conexion->query($sql);
 
                        while($row = $resultado->fetch_assoc()) { ?>
@@ -70,6 +73,8 @@ require "../../config/conexion.php";
                             <!--corregir el nombre de las propiedades-->
                                          
                             <td class="col-"><?php echo $row['id_salida'];?></td>
+                            <td class="col-"><?php echo $row['num_kit'];?></td>
+                            <td class="col-"><?php echo $row['id_item'];?></td>
                             <td class="col-"><?php echo $row['fecha_salida'];?></td>
                             <td class="col-"><?php echo $row['ubicacion'];?></td>
                             <td class="col-"><?php echo $row['compañia'];?></td>

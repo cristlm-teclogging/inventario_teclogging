@@ -6,6 +6,9 @@ require "../../config/conexion.php";
 $sql_kit1 =  "SELECT * FROM `kit`";
 $resultado_kit1 = $conexion->query($sql_kit1);
 
+$sql_kit2 =  "SELECT * FROM `relacion_item_tipo_item`";
+$resultado_kit2 = $conexion->query($sql_kit2);
+
 $sql_select1 =  "SELECT * FROM `ubicacion`";
 $resultado_select1 = $conexion->query($sql_select1);
 
@@ -26,16 +29,29 @@ $resultado_select2 = $conexion->query($sql_select2);
                             <label for="id_entrada" class="form-label">Id Salida:</label>
                             <input type="number" class="form-control" placeholder="Numero de indeificacion" name="id_salida" id="id_salida" required>
                         </div>
+
                         <div class="col-4 mt-3">
-                            <label for="num_kit" class="form-label">Numero de kit</label>
-                             <select class="form-select" name="num_kit" id="num_kit" required>
-                                <option value="" selected disabled>Selecciona tu opción</option>
-                                    <?php 
-                                    while($row = $resultado_kit1->fetch_assoc()){
-                                     ?>
+                        <label for="num_kit" class="form-label">Numero de Kit</label>
+                        <section>
+                            <select name="num_kit" id="num_kit" class="form-select" required>
+                                <option value="" selected disabled>Selecciona el numero de kit</option>
+                                    <?php while($row = $resultado_kit1->fetch_assoc()){ ?>
                                 <option value="<?php echo $row['id_kit']; ?>"><?php echo $row['id_kit']; ?></option>
-                                 <?php } ?>
-                            </select>            
+                                     <?php } ?>
+                            </select>
+                        </section>
+                        </div>
+
+                        <div class="col-4 mt-3">
+                        <label for="id_item" class="form-label">Numero de Serie</label>
+                        <section>
+                            <select name="id_item" id="id_item" class="form-select" required>
+                                    <option value="" selected disabled>Selecciona los item que necesites</option>
+                                        <?php while($row = $resultado_kit2->fetch_assoc()){ ?>
+                                    <option value="<?php echo $row['id_item']; ?>"><?php echo $row['num_serie']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </section>
                         </div>
 
                         </div>
@@ -97,3 +113,12 @@ $resultado_select2 = $conexion->query($sql_select2);
         </div>
     </div>
 </div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+        // Paso 4: Inicializar Select2
+        window.onload=function(){
+                $('#id_item').select2();
+                $('#num_kit').select2();
+            };
+    </script>
