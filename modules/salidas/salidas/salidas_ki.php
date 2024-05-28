@@ -6,14 +6,14 @@ require('../../config/conexion.php');
 $sql_item1 =  "SELECT * FROM `tipo_item`";
 $resultado_item1 = $conexion->query($sql_item1);
 
-$sql_item2 =  "SELECT * FROM `relacion_item_tipo_item`";
+$sql_item2 =  "SELECT rit.id_item as 'id_item', rit.id_tipo_item as 'id_tipo_item', rit.num_serie as 'num_serie', rit.descripcion as 'descripcion', rki.id_kit as 'id_kit', rki.id_item 'item_kit' FROM relacion_item_tipo_item rit LEFT JOIN relacion_kit_item rki ON rki.id_item = rit.id_item";
 $resultado_item2 = $conexion->query($sql_item2);
 
 // Obtener los IDs de los items ya seleccionados
-$sql_items_seleccionados = "SELECT id_item FROM salida_item";
+$sql_items_seleccionados = "SELECT id_item FROM relacion_kit_item";
 $resultado_items_seleccionados = $conexion->query($sql_items_seleccionados);
 $items_seleccionados = array();
-
+// agrega para no aparesca las opcones de la tabla relacion_kit_item
 if ($resultado_items_seleccionados->num_rows > 0) {
     while ($row_item = $resultado_items_seleccionados->fetch_assoc()) {
         $items_seleccionados[] = $row_item['id_item'];

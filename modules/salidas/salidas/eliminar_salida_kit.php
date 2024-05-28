@@ -9,7 +9,7 @@ $resultado=mysqli_query($conexion,$sql);
 
 if($resultado){
     echo "<script lenguaje='JavaScript'> alert('los datos se eliminaron correctamente'); 
-    location.assign('salidas_kit.php'); </script>";
+    location.assign('salidas_kit.php?id_kit=0'); </script>";
 }else{
   echo "<script lenguaje='JavaScript'> alert('los datos NO se eliminaron'); 
   location.assign('salidas_kit.php'); </script>";

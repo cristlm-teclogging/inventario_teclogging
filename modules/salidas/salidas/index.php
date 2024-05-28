@@ -3,6 +3,9 @@
 
 require "../../config/conexion.php";
 
+$id_kit = isset($_GET['id_kit']) ? $_GET['id_kit'] : 0;
+$sql_kit = "SELECT * FROM `relacion_kit_item` WHERE id_kit = '$id_kit'";
+$resultado_kit = $conexion->query($sql_kit);
 ?>
 
 <div class="container mt-2">
@@ -41,7 +44,8 @@ require "../../config/conexion.php";
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/entradas/registro_entrada.php"> <i class="fa-solid fa-truck-arrow-right fa-sm"></i> Registrar Nueva Entrada</a></li>
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/entradas/index.php"> <i class="fa-solid fa-clipboard fa-sm"></i>  Vista de Entradas</a></li>
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_ki.php"> <i class="fa-solid fa-boxes-packing fa-sm"></i> Encargos salidas</a></li>
-                                <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_kit.php"> <i class="fa-solid fa-boxes-stacked fa-sm"></i> Encargos KIT's</a></li>
+                                <!--li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_kit.php"> <i class="fa-solid fa-boxes-stacked fa-sm"></i> Encargos KIT's</a></li-->
+                                <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_kit.php?id_kit=<?php echo urlencode($id_kit); ?>"> <i class="fa-solid fa-boxes-stacked fa-sm"></i> Encargos KIT's</a></li>
                             </ul>
                         </div>
                     </div>
