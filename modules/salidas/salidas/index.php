@@ -6,6 +6,10 @@ require "../../config/conexion.php";
 $id_kit = isset($_GET['id_kit']) ? $_GET['id_kit'] : 0;
 $sql_kit = "SELECT * FROM `relacion_kit_item` WHERE id_kit = '$id_kit'";
 $resultado_kit = $conexion->query($sql_kit);
+
+$id_item = isset($_GET['id_item']) ? $_GET['id_item'] : 0;
+$sql_item = "SELECT * FROM `relacion_kit_item` WHERE id_item = '$id_item'";
+$resultado_item = $conexion->query($sql_item);
 ?>
 
 <div class="container mt-2">
@@ -37,15 +41,15 @@ $resultado_kit = $conexion->query($sql_kit);
                 <div class="card-body">
                     <h3 class="fw-bolder">Registro de Salidas</h3>
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <a href="./registro_salida.php" class="btn btn-primary"> <i class="fa-solid fa-square-plus fa-sm"></i> Agregar nueva salidas</a>
+                    <!--a href="./registro_salida.php" class="btn btn-primary"> <i class="fa-solid fa-square-plus fa-sm"></i> Agregar nueva salidas</a-->
+                    <a href="./registro_salida.php?id_kit=<?php echo urlencode($id_kit); ?>&id_item=<?php echo urlencode($id_item); ?>" class="btn btn-primary"><i class="fa-solid fa-square-plus fa-sm"></i> Agregar nueva salidas </a>
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-truck-arrow-right fa-flip-horizontal fa-sm"></i> Entradas</button>
                             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/entradas/registro_entrada.php"> <i class="fa-solid fa-truck-arrow-right fa-sm"></i> Registrar Nueva Entrada</a></li>
-                                <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/entradas/index.php"> <i class="fa-solid fa-clipboard fa-sm"></i>  Vista de Entradas</a></li>
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_ki.php"> <i class="fa-solid fa-boxes-packing fa-sm"></i> Encargos salidas</a></li>
-                                <!--li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_kit.php"> <i class="fa-solid fa-boxes-stacked fa-sm"></i> Encargos KIT's</a></li-->
                                 <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/salidas/salidas_kit.php?id_kit=<?php echo urlencode($id_kit); ?>"> <i class="fa-solid fa-boxes-stacked fa-sm"></i> Encargos KIT's</a></li>
+                                <li><a class="dropdown-item" href="http://localhost/inventario_tec/modules/entradas/index.php"> <i class="fa-solid fa-clipboard fa-sm"></i>  Vista de Entradas</a></li>
                             </ul>
                         </div>
                     </div>
@@ -53,12 +57,11 @@ $resultado_kit = $conexion->query($sql_kit);
                 <div class="col- table-responsive">
                 <table class="table table-sm table-hover table-bordered">
                      <thead class="col-">
-                        <th class="col-">ID salida</th>
                         <th class="col-">Fecha salida</th>
-                        <th class="col-">numero de kit</th>
+                        <th class="col-">Numero de kit</th>
+                        <th class="col-">Numero de Serie</th>
                         <th class="col-">Ubicacion</th>
                         <th class="col-">Compañia</th>
-                        <th class="col-">Numero de equipo</th>
                         <th class="col-">Comentarios</th>
                         <th class="col-">Documentos Firmados</th>
 
@@ -69,20 +72,17 @@ $resultado_kit = $conexion->query($sql_kit);
                      <?php 
                        require "../../config/conexion.php";
 
-                       $sql = "SELECT sal.id_salida as 'id_salida',  sal.num_kit as 'num_kit', sal.id_item as 'id_item', sal.fecha_salida as 'fecha_salida', sal.ubicacion as 'ubicacion_salida', sal.compañia as 'compañia_salida', sal.num_equipo as 'num_equipo', sal.comentarios as'comentarios', sal.documentos_firmados as 'documentos_firmados', ub.id_ubicacion as 'id_ubicacion', ub.ubicacion as 'ubicacion', com.id_compañia as 'id_compañia', com.nombre_compañia as 'compañia' FROM salida sal LEFT JOIN ubicacion ub ON sal.ubicacion = ub.id_ubicacion LEFT JOIN compañia com ON sal.compañia = com.id_compañia;";
+                       $sql = "SELECT sa.id_salida as 'id_salida', sa.id_kit as 'id_kit', sa.id_item as 'id_item', sa.fecha_salida as 'fecha_salida', sa.ubicacion as 'ubicacion_sa', sa.compañia as 'compania_sa', sa.comentarios 'comentarios', sa.documentos_firmados 'documentos_firmados', rit.id_item as 'id_item_rit', rit.id_tipo_item as 'tipo_item', rit.num_serie as 'num_serie', rit.descripcion as 'descripcion_item', com.id_compañia as 'id_compania', com.nombre_compañia as 'compania', ub.id_ubicacion as 'id_ubicacion', ub.ubicacion as 'ubicacion' FROM salida sa LEFT JOIN relacion_item_tipo_item rit ON sa.id_item = rit.id_item LEFT JOIN compañia com ON sa.compañia = com.id_compañia LEFT JOIN ubicacion ub ON sa.ubicacion = ub.id_ubicacion";
                        $resultado = $conexion->query($sql);
 
                        while($row = $resultado->fetch_assoc()) { ?>
                         <tr class="col-">
-                            <!--corregir el nombre de las propiedades-->
-                                         
-                            <td class="col-"><?php echo $row['id_salida'];?></td>
-                            <td class="col-"><?php echo $row['num_kit'];?></td>
-                            <td class="col-"><?php echo $row['id_item'];?></td>
+                            <!--Mostrar el nombre de las propiedades-->
                             <td class="col-"><?php echo $row['fecha_salida'];?></td>
+                            <td class="col-"><?php echo $row['id_kit'];?></td>
+                            <td class="col-"><?php echo $row['num_serie'];?></td>
                             <td class="col-"><?php echo $row['ubicacion'];?></td>
-                            <td class="col-"><?php echo $row['compañia'];?></td>
-                            <td class="col-"><?php echo $row['num_equipo'];?></td>
+                            <td class="col-"><?php echo $row['compania'];?></td>
                             <td class="col-"><?php echo $row['comentarios'];?></td>
                             
                             <td><embed src="data:application/pdf;base64,<?php echo base64_encode($row['documentos_firmados']); ?>" width="80px" height="80px" type='application/pdf' /></td>        
@@ -94,7 +94,6 @@ $resultado_kit = $conexion->query($sql_kit);
                              <td class="col-text-center">
                                 <a href="./eliminar_salida.php?id_salida=<?php echo $row['id_salida'];?>" class="btn btn-danger"><i class="fas fa-trash-can"></i></a>
                             </td>
-             
                         </tr>
                              <?php  } ?>
                     </tbody>

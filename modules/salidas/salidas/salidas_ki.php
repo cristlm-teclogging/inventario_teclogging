@@ -18,7 +18,7 @@ if ($resultado_items_seleccionados->num_rows > 0) {
     while ($row_item = $resultado_items_seleccionados->fetch_assoc()) {
         $items_seleccionados[] = $row_item['id_item'];
     }
-}
+}// una condicion else para que compruebe que no esta ni en tabla relacion_kit_item y en tablas
 
 ?>
 <div class="container mt-4">
@@ -31,6 +31,7 @@ if ($resultado_items_seleccionados->num_rows > 0) {
                 <form action="agregar_ki.php" method="POST" enctype="multipart/form-data" required>
                     <div class="row">
                     <div class="col-4 mt-2">
+                        <input type="hidden" name="id_info" value="1">
                             <label for="id_tipo_item" class="form-label">Tipo de Item</label>
                             <select name="id_tipo_item" id="id_tipo_item" class="form-select" required>
                                 <option value="" selected disabled>Selecciona tu opción</option>
@@ -76,7 +77,7 @@ if ($resultado_items_seleccionados->num_rows > 0) {
                                  <?php 
                                  require "../../config/conexion.php";
 
-                                     $sql = "SELECT si.id_tipo_item as 'id_tipo_item_si', si.id_item as 'id_item', rit.id_item as 'id_item_rit', rit.id_tipo_item as 'id_tipo_item', rit.num_serie as 'num_serie', rit.descripcion as 'descripcion', ti.id_tipo_item as 'id_tipo_item_ti', ti.tipo_item as 'tipo_item' FROM salida_item si LEFT JOIN relacion_item_tipo_item rit ON rit.id_item = si.id_item LEFT JOIN tipo_item ti ON si.id_tipo_item = ti.id_tipo_item WHERE si.id_item > 0";
+                                     $sql = "SELECT sa.id_tipo_item as 'id_tipo_item_si', sa.id_item as 'id_item', rit.id_item as 'id_item_rit', rit.id_tipo_item as 'id_tipo_item', rit.num_serie as 'num_serie', rit.descripcion as 'descripcion', ti.id_tipo_item as 'id_tipo_item_ti', ti.tipo_item as 'tipo_item' FROM salida sa LEFT JOIN relacion_item_tipo_item rit ON rit.id_item = sa.id_item LEFT JOIN tipo_item ti ON sa.id_tipo_item = ti.id_tipo_item WHERE sa.id_item > 0";
                                     $resultado = $conexion->query($sql);
 
                                     while($row = $resultado->fetch_assoc()) { ?>

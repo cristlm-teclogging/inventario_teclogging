@@ -1,21 +1,42 @@
 <?php
-error_reporting(1);
 
+error_reporting(1);
 require('../../config/conexion.php');
 
-// Variables de la tabla relacion_kit_item
-$id_tipo_item = $_POST['id_tipo_item'];
-$id_item = $_POST['id_item'];
+// Obtener el último id_salida y sumarle 1
+$query = "SELECT IFNULL(MAX(id_salida), 0) + 1 AS new_id_salida FROM salida";
+$result = $conexion->query($query);
 
+if ($result) {
+    $row = $result->fetch_assoc();
+    $new_id_salida = $row['new_id_salida'];
 
-$sql = "INSERT INTO `salida_item`(`id_tipo_item`, `id_item`)VALUES('$id_tipo_item', '$id_item')";
-$resultado = $conexion -> query($sql);
+    // Variables de la tabla salida
+    $id_tipo_item = $_POST['id_tipo_item'];
+    $id_item = $_POST['id_item'];
+    $id_info = $_POST['id_info'];
 
-if($resultado){
-    header('Location: salidas_ki.php');
-}else{
-    echo "No se insertaron los datos";
+    // Insertar el nuevo registro
+    $sql = "INSERT INTO `salida` (`id_salida`, `id_tipo_item`, `id_item`, `id_info`) 
+            VALUES ('$new_id_salida', '$id_tipo_item', '$id_item', '$id_info')";
+    $resultado = $conexion->query($sql);
+
+    if ($resultado) {
+        header('Location: salidas_ki.php');
+    } else {
+        echo "No se insertaron los datos";
+    }
+} else {
+    echo "Error al obtener el nuevo id_salida";
 }
+
+/*
+if ($conexion->query($sql) === TRUE) {
+    header('Location: salidas_ki.php');
+} else {
+    echo "Error al insertar el registro: " . $conexion->error;
+}*/
+
 //consultas para verificar si los datos exiten y no
 /*$sql_id_kit ="SELECT * FROM `relacion_kit_item` WHERE `id_kit` = '$id_kit'";
 $result_id_kit = $conexion->query($sql_id_kit);

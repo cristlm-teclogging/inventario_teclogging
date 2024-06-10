@@ -20,7 +20,7 @@ $row = $resultado->fetch_assoc();
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <h4 class="fw-bolder">Registro de Salida</h4>
+                <h4 class="fw-bolder">Editar de Salida</h4>
             </div>
             <div class="card-body">
                 <form action="./modificar_salida.php" method="POST" enctype="multipart/form-data">
@@ -60,11 +60,6 @@ $row = $resultado->fetch_assoc();
                                 <option value="<?php echo $row['id_compañia']; ?>"><?php echo $row['nombre_compañia']; ?></option>
                                  <?php } ?>
                             </select>            
-                        </div>
-
-                        <div class="col-4 mt-3">
-                            <label for="num_equipo" class="form-label">Numero de equipo:</label>
-                            <input type="number" class="form-control" placeholder="Agrega el numero de equipo" name="num_equipo" id="num_equipo" value="<?php echo $row['num_equipo']?>">
                         </div>
                     </div>
                     <div class="row">
